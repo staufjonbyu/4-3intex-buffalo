@@ -4,6 +4,8 @@ import React from 'react';
 function GDPR() {
     return(
         <>
+            <p>
+
             GDPR Privacy Notice for Architect Records
             
             This privacy notice sets out how we collect, use, and protect your personal data in compliance with the General Data Protection Regulation (GDPR) as implemented in the UK. The data controller responsible for your personal data is [Insert Name of Company], registered in [Insert Country], with registered office at [Insert Address], and contact email [Insert Email Address].
@@ -47,6 +49,7 @@ function GDPR() {
             Contact us
             
             If you have any questions or concerns about our data processing practices or this privacy notice, or if you wish to exercise your rights under GDPR, please contact us at [Insert Contact Information].
+            </p>
         </>
     )
 }

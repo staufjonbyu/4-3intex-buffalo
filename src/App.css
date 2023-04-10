@@ -1,7 +1,52 @@
 .App {
   text-align: center;
 }
+header {
+  background-color: #002e5d;
+  color: white;
+  padding: 0;
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: 72px auto;
+  font-family: var(--headlineFont),HCo Ringside Narrow SSm,Open Sans,Helvetica,Arial,sans-serif;
+}
 
+body {
+  color: #002e5d;
+  background-color: white;
+  font-weight: 400;
+  line-height: 1.6;
+}
+footer {
+  background-color: #002e5d;
+  color: white;
+}
+.custom_theme {
+  --cc-bg: #ffffff;
+  --cc-text: #000000;
+  --cc-border-radius: 6px;
+  --cc-btn-primary-bg: #002e5d;
+  --cc-btn-primary-text: #ffffff;
+  --cc-btn-primary-hover-bg: #4d6e8e;
+  --cc-btn-secondary-bg: #ffffff;
+  --cc-btn-secondary-text: #4d6e8e;
+  --cc-btn-secondary-hover-bg: #f1f3f5;
+  --cc-btn-border-radius: 4px;
+  --cc-btn-link: #2d4156;
+  --cc-toggle-bg-off: #c9c9c9;
+  --cc-toggle-bg-on: #c8ddf2;
+  --cc-toggle-bg-readonly: #d6d6d6;
+  --cc-toggle-knob-bg: #002f5d;
+  --cc-toggle-knob-icon-color: #002f5d;
+  --cc-block-text: #4d4d4d;
+  --cc-cookie-category-block-bg: #f5f5f5;
+  --cc-cookie-category-block-bg-hover: #c9c9c9;
+  --cc-section-border: #f1f3f5;
+  --cc-cookie-table-border: #f5f5f5;
+  --cc-overlay-bg: #040608;
+  --cc-webkit-scrollbar-bg: #cfd5db;
+  --cc-webkit-scrollbar-bg-hover: #9199a0;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +80,453 @@
   to {
     transform: rotate(360deg);
   }
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Sentinel A", "Sentinel B", Georgia, serif;
+}
+
+p,
+span,
+div {
+  font-family: "Gotham A", "Gotham B", Helvetica, sans-serif;
+}
+
+/* -- making sure it doesn't override some BYU Header specifics -- */
+[slot="site-title"] h1,
+[slot="site-title"] span,
+[slot="site-title"] div,
+[slot="site-title"] a,
+#site-name p,
+#site-name span,
+#site-name div,
+#site-name a {
+  font-family: "Vitesse A", "Vitesse B", serif;
+}
+/* JS for the accordion can be found at https://codepen.io/blaketm/pen/pPXyVj */
+
+/*
+ * Apply .byu-accordion to the bar//tab of your accordion
+ * Apply .byu-accordion-panel to content of each section of teh accordion
+ */
+
+.byu-accordion {
+  background-color: #002e5d;
+  color: #fff;
+  cursor: pointer;
+  padding: 18px;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  width: 100%;
+}
+
+.byu-accordion::after {
+  content: "+";
+  font-size: 13px;
+  color: #fff;
+  float: right;
+  text-align: right;
+  margin-left: 5px;
+}
+
+.byu-accordion.active::after {
+  content: "-";
+}
+
+/* Add a background color to the  if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+.byu-accordion.active,
+.byu-accordion:hover {
+  background-color: #2b4d6e;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+
+.byu-accordion-panel {
+  padding: 0 18px;
+  background-color: #f2f2f2;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.byu-inner-shadow {
+  -webkit-box-shadow: inset -3px 0 5px 0 rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: inset -3px 0 5px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: inset -3px 0 5px 0 rgba(0, 0, 0, 0.4);
+}
+
+.byu-outer-shadow-small {
+}
+
+.byu-outer-shadow-medium {
+  -webkit-box-shadow: -3px 0 5px 0 rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: -3px 0 5px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: -3px 0 5px 0 rgba(0, 0, 0, 0.4);
+}
+
+.byu-outer-shadow-large {
+}
+
+.byu-no-shadow {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.byu-button {
+  display: inline-block;
+  padding: 9px 12px;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  font-family: Vitesse A, Vitesse B, Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.byu-button:hover {
+  background: #444;
+}
+
+.byu-button:active {
+  background-color: #333;
+  -webkit-box-shadow: -3px 0 5px 0 rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: -3px 0 5px 0 rgba(0, 0, 0, 0.35);
+  box-shadow: -3px 0 5px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* --- white buttons --- */
+
+/* white/gray button */
+.byu-button.white {
+  background-color: #fff;
+  color: #141414;
+  border: 1px solid #c5c5c5;
+}
+
+.byu-button.white:hover {
+  background-color: #ddd;
+}
+
+.byu-button.white:active {
+  background-color: #ccc;
+}
+
+/* white/navy button */
+.byu-button.whitenavy {
+  background-color: #fff;
+  color: #002e5d;
+  border: 1px solid #002e5d;
+}
+
+.byu-button.whitenavy:hover {
+  background-color: #869db5;
+  color: #fff;
+}
+
+.byu-button.whitenavy:active {
+  background-color: #002e5d;
+  color: #fff;
+}
+
+/* --- grey buttons --- */
+
+/* light gray button */
+.byu-button.lightgray {
+  background-color: #e5e5e5;
+  color: #002e5d;
+}
+
+.byu-button.lightgray:hover {
+  background-color: #f2f2f2;
+}
+
+.byu-button.lightgray:active {
+  background-color: #666;
+}
+
+/* medgray button */
+.byu-button.medgray {
+  background-color: #666;
+  color: #fff;
+}
+
+.byu-button.medgray:hover {
+  background-color: #a2a2a2;
+}
+
+.byu-button.medgray:active {
+  background-color: #7a7a7a;
+}
+
+/* --- blue buttons --- */
+
+/* royal blue button */
+.byu-button.royal {
+  background-color: #003da5;
+  color: #fff;
+}
+
+.byu-button.royal:hover {
+  background-color: #114bad;
+}
+
+.byu-button.royal:active {
+  background-color: #002d95;
+}
+
+/* navy button */
+.byu-button.navy {
+  background-color: #002e5d;
+  color: #fff;
+}
+
+.byu-button.navy:hover {
+  background-color: #003da5;
+}
+
+.byu-button.navy:active {
+  background-color: #114bad;
+}
+
+/* light blue button */
+.byu-button.lightblue {
+  background-color: #869db5;
+  color: #fff;
+}
+
+.byu-button.lightblue:hover {
+  background-color: #96adc5;
+}
+
+.byu-button.lightblue:active {
+  background-color: #768da5;
+}
+
+/* extra light blue button */
+.byu-button.xlightblue {
+  background-color: #c3ddf9;
+  color: #002e5d;
+}
+
+.byu-button.xlightblue:hover {
+  background-color: #cfdfff;
+}
+
+.byu-button.xlightblue:active {
+  background-color: #b3cde9;
+}
+
+/* --- secondary color buttons --- */
+
+/* teal button */
+.byu-button.teal {
+  background-color: #84dcb4;
+  color: #fff;
+}
+
+.byu-button.teal:hover {
+  background-color: #e5f7ef;
+  color: #002e5d;
+}
+
+.byu-button.teal:active {
+  background-color: #74cca4;
+  color: #002e5d;
+}
+
+/* red button - for Errors only */
+.byu-button.red {
+  background-color: #b3041a;
+  color: #fff;
+}
+
+.byu-button.red:hover {
+  background-color: #d3243a;
+}
+
+.byu-button.red:active {
+  background-color: #b3041a;
+}
+
+/* yellow button */
+.byu-button.yellow {
+  background-color: #fcc015;
+  color: #002e5d;
+}
+
+.byu-button.yellow:hover {
+  background-color: #fef2d0;
+}
+
+.byu-button.yellow:active {
+  background-color: #ffcf1a;
+}
+
+/* green button */
+.byu-button.green {
+  background-color: #66b200;
+  color: #fff;
+}
+
+.byu-button.green:hover {
+  background-color: #86d220;
+}
+
+.byu-button.green:active {
+  background-color: #56a200;
+}
+
+/* orange button */
+.byu-button.orange {
+  background-color: #d57301;
+  color: #fff;
+}
+
+.byu-button.orange:hover {
+  background-color: #f59321;
+}
+
+.byu-button.orange:active {
+  background-color: #c56300;
+}
+.two-columns,
+.two-column,
+.three-columns,
+.three-column {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  justify-content: space-between;
+}
+.two-columns > div,
+.two-column > div {
+  width: 48%;
+}
+.three-columns > div,
+.three-column > div {
+  width: 31%;
+}
+.byu-container-lightgray {
+  background: #e5e5e5;
+  border-radius: 5px;
+  padding: 30px;
+  margin: 20px 0px;
+  color: #444;
+}
+.byu-table {
+  color: #666;
+  font-size: 12px;
+  font-weight: normal;
+  border: none;
+  vertical-align: middle;
+  font-family: Gotham A, Gotham B, Helvetica, sans-serif;
+  padding: 10px;
+  border-collapse: collapse;
+  margin: 30px;
+  text-align: left;
+  background-color: #fff;
+}
+
+.byu-table th {
+  color: #002e5d;
+  font-weight: bold;
+  padding-bottom: 5px;
+  font-size: 14px;
+}
+
+.byu-table td {
+  padding-top: 5px;
+  font-weight: 200;
+}
+
+.byu-table img {
+  max-width: 80px;
+  max-height: 80px;
+  margin: 0 50px 5px 20px;
+  min-height: 80px;
+}
+
+.byu-table a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #003da5;
+}
+
+.byu-table tr:nth-child(odd) {
+  vertical-align: top;
+}
+
+.byu-table tr:nth-child(even) {
+  background-color: #e5e5e5;
+  vertical-align: top;
+}
+
+/* ---- Gray header ---- */
+.byu-table.gray-header th {
+  background-color: #6a6a6b;
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 0;
+}
+
+/* ---- Navy header ---- */
+.byu-table.navy-header th {
+  background-color: #002e5d;
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 0;
+}
+@font-face {
+  font-family: "Public Sans";
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-Regular.woff2")
+      format("woff2"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-Regular.woff")
+      format("woff"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-Regular.ttf")
+      format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-Italic.woff2")
+      format("woff2"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-Italic.woff")
+      format("woff"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-Italic.ttf")
+      format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-SemiBold.woff2")
+      format("woff2"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-SemiBold.woff")
+      format("woff"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-SemiBold.ttf")
+      format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-SemiBoldItalic.woff2")
+      format("woff2"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-SemiBoldItalic.woff")
+      format("woff"),
+    url("https://cdnjs.cloudflare.com/ajax/libs/uswds/2.0.1/fonts/public-sans/PublicSans-SemiBoldItalic.ttf")
+      format("truetype");
+  font-weight: 600;
+  font-style: italic;
 }

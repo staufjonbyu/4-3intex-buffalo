@@ -1,23 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
+import Home from './PageBody/Home';
+import Burial from './PageBody/Burial';
+import Admin from './PageBody/Admin';
+import Supervised from './PageBody/Supervised';
+import Unsupervised from './PageBody/Unsupervised';
+import Header from './Header';
+import Footer from './Footer'
+import GDPR from './PageBody/Gpdr'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Header/>
+        <body>
+          <Routes>
+                <Route path="/" element={<Home></Home>} />
+                <Route path="/burial" element={<Burial></Burial>} />
+                <Route path="/admin" element={<Admin></Admin>} />
+                <Route path="/supervised" element={<Supervised></Supervised>}/>
+                <Route path="/unsupervised" element={<Unsupervised></Unsupervised>}/>
+                <Route path="/privacy" element={<GDPR></GDPR>}/>
+            </Routes>
+        </body>
+        <Footer/>  
+      </BrowserRouter>
+
     </div>
   );
 }

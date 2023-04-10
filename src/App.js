@@ -24,9 +24,9 @@ function App() {
         onAccept={(acceptedByScrolling) => {
           if (acceptedByScrolling) {
             // triggered if user scrolls past threshold
-            alert("Accept was triggered by user scrolling");
+            alert("Congrats on Accepting");
           } else {
-            alert("Accept was triggered by clicking the Accept button");
+            alert("Click Accept!");
           }
         }}
         enableDeclineButton

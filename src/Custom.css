@@ -1,0 +1,144 @@
+/* Set the default font family and color */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Set the background color */
+body {
+  background-color: #fff;
+}
+
+/* Set the header style */
+header {
+  background-color: #00338d;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Set the main content container style */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Set the style for links */
+a {
+  color: ##002e5d;
+  text-decoration: none;
+  border-bottom: 2px solid #00338d;
+}
+
+/* Set the hover effect for links */
+a:hover {
+  color: #ece7d1;
+  background-color: #00338d;
+}
+
+/* Set the style for buttons */
+button {
+  background-color: #00338d;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Set the hover effect for buttons */
+button:hover {
+  background-color: #fff;
+  color: #00338d;
+  border: 2px solid #00338d;
+}
+
+/* Set the style for headings */
+
+/* Set the style for paragraphs */
+p {
+  line-height: 1.5;
+  margin: 10px 0;
+}
+nav {
+  background-color: white;
+  color: #002e5d;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+nav ul li {
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: #002e5d;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+nav ul li a:hover {
+  color: #00338d;
+  background-color: #fff;
+}
+footer {
+    background-color: #f2f2f2;
+    padding: 20px 0;
+    margin-top: 20px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .footer-content p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .footer-content ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .footer-content li {
+    margin-right: 20px;
+  }
+  
+  .footer-content a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  
+  .footer-content a:hover {
+    color: #00338d;
+  }
+  

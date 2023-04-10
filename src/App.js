@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import './Custom.css';
 import './App.css';
 import CookieConsent from "react-cookie-consent";
 import Home from './PageBody/Home';
@@ -10,8 +11,29 @@ import Header from './Header';
 import Footer from './Footer'
 import GDPR from './PageBody/Gpdr'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, {useEffect} from 'react';
 
 function App() {
+  useEffect(() => {
+      fetch('https://localhost:7127')
+    .then(response => response.json())
+    .then(data => {
+      // 'data' contains the parsed JSON data
+      // You can now use 'data' to update your application UI or do other operations.
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }, []);
+  useEffect(() => {
+      const fetchData = async()=>{
+          const rsp = await fetch('https://localhost:7127');
+          const temp = await rsp.json();
+
+      };
+      fetchData();
+
+  }, []);
   return (
     <div className="App">
         <CookieConsent

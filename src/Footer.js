@@ -1,14 +1,18 @@
 import React from 'react';
 import './App.css';
+import './Custom.css';
 
 function Footer() {
   return (
     <footer>
-        <ul className="nav-links">
-          <li>
-            <a href="/privacy">Our Privacy Policy</a>
-          </li>
-        </ul>
+          <center>
+            <div class="footer-content">
+              <ul>
+                <li><a href="/privacy">Our Privacy Policy</a></li>
+              </ul>
+              <p>&copy; 2023 My Website. All rights reserved.</p>
+            </div>
+          </center>
 
     </footer>
   );

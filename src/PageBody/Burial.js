@@ -45,7 +45,8 @@ function Burial() {
     <thead>
       <tr>
         <th>Burial Number</th>
-        <th>  
+        <th> 
+       
           <select onChange={i => {setAge(i.target.value); setData([])}}>
             <option selected disabled>Select area</option>
             {

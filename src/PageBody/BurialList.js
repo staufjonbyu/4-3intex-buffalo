@@ -2,24 +2,26 @@ import React from "react";
 import BurialCard from "./BurialCard";
 
 function Burial({ data }) {
-//   const replaceNullValues = (data) => {
-//     const replacedData = data.map((result) => {
-//       return Object.keys(result).reduce((acc, key) => {
-//         acc[key] = result[key] === null ? "" : result[key];
-//         return acc;
-//       }, {});
-//     });
+  //   const replaceNullValues = (data) => {
+  //     const replacedData = data.map((result) => {
+  //       return Object.keys(result).reduce((acc, key) => {
+  //         acc[key] = result[key] === null ? "" : result[key];
+  //         return acc;
+  //       }, {});
+  //     });
 
-//     return replacedData;
-//   };
-//   const tableData = replaceNullValues(data.results);
+  //     return replacedData;
+  //   };
+  //   const tableData = replaceNullValues(data.results);
   if (!data) {
     return <div>Loading data...</div>;
   } else {
     return (
       <div>
-          {data.results.map(oneItem => <BurialCard{...oneItem}/>)}
-            {/* {data.results.map((result) => (
+        {data.results.map((oneItem) => (
+          <BurialCard {...oneItem} />
+        ))}
+        {/* {data.results.map((result) => (
               <tr key={result.id}>
                 <td>{result.id}</td>
                 <td>{result.squarenorthsouth}</td>

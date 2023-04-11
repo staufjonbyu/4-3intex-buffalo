@@ -22,6 +22,9 @@ function Header() {
           <li>
             <a href="/admin">Admin</a>
           </li>
+          <li>
+            <a href="/login">Login</a>
+          </li>
         </ul>
       </nav>
       <h1>Water Buffalo</h1>

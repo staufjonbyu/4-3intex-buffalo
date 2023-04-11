@@ -1,20 +1,30 @@
 import logo from "./logo.svg";
 import "./Custom.css";
 import "./App.css";
-import CookieConsent from "react-cookie-consent";
+
+// pages
 import Home from "./PageBody/Home";
 import Burial from "./PageBody/BurialList";
 import Admin from "./PageBody/Admin";
 import Supervised from "./PageBody/Supervised";
 import Unsupervised from "./PageBody/Unsupervised";
+import Login from "./PageBody/Login";
 import Header from "./Header";
 import Footer from "./Footer";
 import CookieBanner from "./Auth/CookieConsent.js";
-
 import GDPR from "./PageBody/Gpdr";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-function App() {
+
+// import { Amplify } from 'aws-amplify';
+
+// import { withAuthenticator } from '@aws-amplify/ui-react';
+// import '@aws-amplify/ui-react/styles.css';
+
+// import awsExports from './aws-exports';
+// Amplify.configure(awsExports);
+
+function App({ signOut, user }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -34,7 +44,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-        <CookieBanner></CookieBanner>
+      <CookieBanner></CookieBanner>
       <BrowserRouter>
         <Header />
         <body>
@@ -47,13 +57,16 @@ function App() {
               path="/unsupervised"
               element={<Unsupervised></Unsupervised>}
             />
+            <Route path="/login" element={<Login></Login>}></Route>
             <Route path="/privacy" element={<GDPR></GDPR>} />
           </Routes>
+          {/* {user.username}
+          <button onClick={signOut}>Sign out</button> */}
         </body>
         <Footer />
       </BrowserRouter>
     </div>
   );
 }
-
 export default App;
+// export default withAuthenticator(App);

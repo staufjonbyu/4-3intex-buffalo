@@ -6,12 +6,29 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
+import { AmplifyProvider } from '@aws-amplify/ui-react';
+import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react';
 Amplify.configure(config);
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// const theme = {
+//   name: 'byu-look-alike',
+//   tokens: {
+//     colors: {
+//       background: {
+//         primary: { value: '#658CBB'}
+//       }
+//     }
+//   }
+// }
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <AmplifyProvider>
+    <Authenticator.Provider>
+      <App />
+    </Authenticator.Provider>
+
+  </AmplifyProvider>
+  // <React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

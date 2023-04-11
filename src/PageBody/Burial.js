@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react';
 
 const mainUrl = 'http://intexapi-env-1.eba-27nra4uc.us-east-1.elasticbeanstalk.com/api/Main'
 
 function Burial() {
-
+  const { authStatus } = useAuthenticator(context => [context.authStatus]);
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [obj, setObj] = useState([]);
+  const [filter, setFilter] = useState([]);
 
   useEffect(() => {
     async function getData(){
@@ -18,48 +20,110 @@ function Burial() {
     }
     getData();
   }, [page])
-  
-  
-  return (
-    <div>
-    <div style={{ height: "500px", overflow: "auto" }}>
-      <table>
-        <thead>
-          <tr>
-            <th>Burial Number</th>
-            <th>Burial Area</th>
-          </tr>
-        </thead>
-        <tbody>
+    return(
+<>
+      {authStatus !== 'authenticated' ? 
+      <center>
+
+<div>
+<div>
+
+{/* <select onChange={e => {setFilter(e.vaule)}}>
+          <option selected disabled>Hair Color</option>
           {
-            data.map(x => {
+            hair_color ? hair_color.map(i => {
               return(
-                <tr key={x.id}>
-                  <td>{x.burialnumber}</td>
-                  <td>{x.area}</td>
-                </tr>
+                <option value={i.value}>{i.vaule}</option>
               )
-            })
+            }) : <option></option>
           }
-        </tbody>
-      </table>
-    </div>
-    <div>
+</select> */}
+
+</div>
+<div style={{ height: "500px", overflow: "auto" }}>
+  <table>
+    <thead>
+      <tr>
+        <th>Burial Number</th>
+        <th>Burial Area</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        data.map(x => {
+          return(
+            <tr key={x.id}>
+              <td>{x.burialnumber}</td>
+              <td>{x.area}</td>
+            </tr>
+          )
+        })
+      }
+    </tbody>
+  </table>
+</div>
+<div>
+{
+  obj ? 
+  <div>
     {
-      obj ? 
-      <div>
-        {
-          obj.previousPage !== "NaN" ? <button onClick={() => {setPage(page - 1); setData([])}}>Previous</button> : <></>
-        }
-        {
-          obj.nextPage !== "NaN" ? <button onClick={() => {setPage(page + 1); setData([])}}>Next</button> : <></>
-        }
-      </div>
-      : <></>
+      obj.previousPage !== "NaN" ? <button onClick={() => {setPage(page - 1); setData([])}}>Previous</button> : <></>
+    }
+    {
+      obj.nextPage !== "NaN" ? <button onClick={() => {setPage(page + 1); setData([])}}>Next</button> : <></>
     }
   </div>
-  </div>
-  );
+  : <></>
 }
+</div>
+</div>
+</center> : 
+<center>
+
+      <div>
+      <div style={{ height: "500px", overflow: "auto" }}>
+        <table>
+          <thead>
+            <tr>
+              <th>Burial Number</th>
+              <th>Burial Area</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              data.map(x => {
+                return(
+                  <tr key={x.id}>
+                    <td>{x.burialnumber}</td>
+                    <td>{x.area}</td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
+      </div>
+      <div>
+      {
+        obj ? 
+        <div>
+          {
+            obj.previousPage !== "NaN" ? <button onClick={() => {setPage(page - 1); setData([])}}>Previous</button> : <></>
+          }
+          {
+            obj.nextPage !== "NaN" ? <button onClick={() => {setPage(page + 1); setData([])}}>Next</button> : <></>
+          }
+        </div>
+        : <></>
+      }
+    </div>
+    </div>
+    </center>
+        
+        }
+    </>
+    );
+}
+
 
 export default Burial;

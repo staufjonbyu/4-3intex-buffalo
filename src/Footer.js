@@ -1,22 +1,27 @@
-import React from 'react';
-import './Custom.css';
-import './App.css';
+import React from "react";
+//import "./App.css";
+// import "./Custom.css";
 
 function Footer() {
   return (
-    <footer>
-          <center>
-            <div class="footer-content">
-              <ul>
-                <li><a href="/privacy">Our Privacy Policy</a></li>
-              </ul>
-              <p>&copy; 2023 My Website. All rights reserved.</p>
-            </div>
-          </center>
-
-    </footer>
+    <div className="container">
+      <footer className="py-2 my-2 fixed-bottom">
+        <a href="/privacy">Our Privacy Policy</a>
+        <p className="text-center text-muted">&copy; 2023 Buffalo Website</p>
+      </footer>
+    </div>
   );
 }
 
+// <footer>
+//   <center>
+//     <div className="footer-content">
+//       <ul>
+//         <li><a href="/privacy">Our Privacy Policy</a></li>
+//       </ul>
+//       <p>&copy; 2023 My Website. All rights reserved.</p>
+//     </div>
+//   </center>
+// </footer>
 
 export default Footer;

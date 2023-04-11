@@ -1,6 +1,6 @@
 import React from "react";
-import "./App.css";
 import "./Custom.css";
+import "./App.css";
 
 function Header() {
   return (
@@ -21,6 +21,9 @@ function Header() {
           </li>
           <li>
             <a href="/admin">Admin</a>
+          </li>
+          <li>
+            <a href="/login">Login</a>
           </li>
         </ul>
       </nav>

@@ -23,7 +23,7 @@ function Burial() {
   return (
     <div>
     <div style={{ height: "500px", overflow: "auto" }}>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Burial Number</th>
@@ -34,7 +34,7 @@ function Burial() {
           {
             data.map(x => {
               return(
-                <tr key={x.id}>
+                <tr>
                   <td>{x.burialnumber}</td>
                   <td>{x.area}</td>
                 </tr>
@@ -57,6 +57,8 @@ function Burial() {
       </div>
       : <></>
     }
+    <br/>
+    <p>Page {page} of {obj.totalPages}</p>
   </div>
   </div>
   );

@@ -28,12 +28,12 @@ function Burial() {
 <div>
 <div>
 
-{/* <select onChange={e => {setFilter(e.vaule)}}>
+{/* <select onChange={e => {setFilter(e.value)}}>
           <option selected disabled>Hair Color</option>
           {
             hair_color ? hair_color.map(i => {
               return(
-                <option value={i.value}>{i.vaule}</option>
+                <option value={i.value}>{i.value}</option>
               )
             }) : <option></option>
           }

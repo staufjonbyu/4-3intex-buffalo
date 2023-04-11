@@ -9,7 +9,8 @@ function Admin() {
         <div>
           <h1>Welcome {user.attributes.email}</h1>
           <h3>You are authenticated</h3>
-          <button>Go to Burial</button>
+          <a className="button" href='/burial'>Go to Burial</a>
+
         </div>
       )}
     </Authenticator>

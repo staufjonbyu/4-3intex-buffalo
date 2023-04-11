@@ -54,9 +54,9 @@ function App({ signOut, user }) {
           <Footer />
         </BrowserRouter>
       </Authenticator.Provider>
+      <CookieBanner></CookieBanner>
     </div> : 
         <div className="App">
-        <CookieBanner></CookieBanner>
         <Authenticator.Provider>
           <BrowserRouter>
             <Header />

@@ -27,13 +27,41 @@
         "AdminQueries58d9d897": {
           "deploymentBucketName": "amplify-amplify-dev-184616-deployment",
           "s3Key": "amplify-builds/AdminQueries58d9d897-47754f48646647746539-build.zip"
-        }
+        },
+        "amplifyc49608fc": {}
       },
       "api": {
         "AdminQueries": {}
       },
       "geo": {
         "Site": {}
+      }
+    }
+  },
+  "master": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify-master-113236-authRole",
+      "UnauthRoleArn": "arn:aws:iam::499435607731:role/amplify-amplify-master-113236-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::499435607731:role/amplify-amplify-master-113236-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplify-master-113236-deployment",
+      "UnauthRoleName": "amplify-amplify-master-113236-unauthRole",
+      "StackName": "amplify-amplify-master-113236",
+      "StackId": "arn:aws:cloudformation:us-east-1:499435607731:stack/amplify-amplify-master-113236/046aa200-d958-11ed-94ea-0e117ae1a657",
+      "AmplifyAppId": "d2r4w2435fuu07"
+    },
+    "categories": {
+      "auth": {
+        "amplifyc49608fc": {}
+      },
+      "function": {
+        "AdminQueries58d9d897": {},
+        "amplifyc49608fcCustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "Hacked! Jkjk  Thanks for creating an account with Section 4 Group 3",
+          "EMAILMESSAGE": "If the link sends 404 click resend code and the code will appear"
+        },
+        "amplifyc49608fc": {}
       }
     }
   }

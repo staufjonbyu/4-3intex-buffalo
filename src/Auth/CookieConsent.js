@@ -3,7 +3,7 @@ import CookieConsent from "react-cookie-consent";
 function CookieBanner(){
         return (
           <CookieConsent
-            debug = {true}
+            
             location="bottom"
             buttonText="Sure man!!"
             cookieName="myAwesomeCookieName2"

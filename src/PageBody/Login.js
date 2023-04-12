@@ -4,8 +4,8 @@ import "@aws-amplify/ui-react/styles.css";
 
 function Admin() {
   return (
-    <Authenticator>
-      {({ signOut, user }) => (
+    <Authenticator slot="sign-in" usernameAlias="email" hideSignUp>
+      {({ user }) => (
         <div>
           <h1>Welcome {user.attributes.email}</h1>
           <h3>You are authenticated</h3>

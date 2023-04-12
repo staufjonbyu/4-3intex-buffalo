@@ -18,7 +18,7 @@ function Burial() {
 
   useEffect(() => {
     async function getData(){
-      const url = `${mainUrl}/Main?page=${page}&area=${areas}&age=${ages}&sex=${sex}&wrapping=${wrappings}&HairColor=${hairColors}`;
+      const url = `${mainUrl}/Main?page=${page}&age=${ages}&wrapping=${wrappings}&sex=${sex}&hairColor=${hairColors}&area=${areas}`;
       const response = await fetch(url);
       const result = await response.json();
       const urlFilter = `${mainUrl}/Filter`;
@@ -27,10 +27,9 @@ function Burial() {
       setFilter(filterResult);
       setData(result.results);
       setObj(result); 
-      setPage(1);
     }
     getData();
-  }, [page, ages,sex,wrappings,hairColors,areas])
+  }, [page,ages,sex,wrappings,hairColors,areas])
 // 
   
     return(
@@ -39,8 +38,7 @@ function Burial() {
       <center>
 
 <div>
-
-
+    <br/>
 <div style={{ height: "500px", overflow: "auto" }}>
   <table>
     <thead>
@@ -112,7 +110,7 @@ function Burial() {
           </select>
         </th>
         <th>
-          <select onChange={i => {setAge(i.target.value); setData([]);}}>
+          <select onChange={i => {setAge(i.target.value);}}>
             <option selected disabled>Select age</option>
             {
               filter.ages ?
@@ -125,7 +123,7 @@ function Burial() {
           </select>
         </th>
         <th>
-          <select onChange={i => {setAge(i.target.value); setData([]);}}>
+          <select onChange={i => {setAge(i.target.value);}}>
               <option selected disabled>Select sex</option>
               {
                 filter.sex ?
@@ -138,7 +136,7 @@ function Burial() {
               </select>
         </th>
         <th>
-          <select onChange={i => {setAge(i.target.value); setData([]);}}>
+          <select onChange={i => {setAge(i.target.value);}}>
             <option selected disabled>Select hairColors</option>
             {
               filter.hairColors ?
@@ -151,7 +149,7 @@ function Burial() {
           </select>
         </th>
         <th>
-          <select onChange={i => {setAge(i.target.value); setData([]);}}>
+          <select onChange={i => {setAge(i.target.value);}}>
             <option selected disabled>Select wrapping</option>
             {
               filter.wrappings ?
@@ -172,9 +170,9 @@ function Burial() {
             <tr>
               <td>{x.burialnumber}</td>
               <td>{x.area}</td>
-              <td>{x.age}</td>
+              <td>{x.ageatdeath}</td>
               <td>{x.sex}</td>
-              <td>{x.hairColor}</td>
+              <td>{x.haircolor}</td>
               <td>{x.wrapping}</td>
             </tr>
           )
@@ -183,27 +181,30 @@ function Burial() {
     </tbody>
   </table>
 </div>
+</div>
 <div>
-{
-  obj ? 
-  <div>
-    {
-      obj.nextPage !== "NaN" ? <button onClick={() => {setPage(page + 1); setData([])}}>Next</button> : <></>
-    }
-    {
-      obj.previousPage !== "NaN" ? <button onClick={() => {setPage(page - 1); setData([])}}>Previous</button> : <></>
-    }
-
-    <p>Page {page} of {obj.totalPages}</p>
-  </div>
-  : <></>
-}
-</div>
-</div>
+      {
+        obj && data ? 
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          {
+            obj.nextPage !== "NaN" ? <button onClick={() => {setPage(page + 1); setData([])}}>Next</button> : <></>
+          }
+          {
+            obj.previousPage !== "NaN" ? <button onClick={() => {setPage(page - 1); setData([])}}>Previous</button> : <></>
+          }
+          
+        </div>
+        : <></>
+      }
+      <br/>
+      {obj.totalPages > 0 ? <p>Page {page} of {obj.totalPages}</p> : <></>}
+    </div>
 </center> : 
 <center>
 
       <div>
+      
+    <br/>
       <div style={{ height: "500px", overflow: "auto" }}>
         <table>
           <thead>
@@ -217,12 +218,14 @@ function Burial() {
               data.map(x => {
                 return(
                   <tr>
+                    <tr>
                     <td>{x.burialnumber}</td>
                     <td>{x.area}</td>
-                    <td>{x.age}</td>
+                    <td>{x.ageatdeath}</td>
                     <td>{x.sex}</td>
-                    <td>{x.hairColor}</td>
+                    <td>{x.haircolor}</td>
                     <td>{x.wrapping}</td>
+                  </tr>
                   </tr>
                 )
               })
@@ -230,10 +233,11 @@ function Burial() {
           </tbody>
         </table>
       </div>
-      <div>
+    </div>
+    <div>
       {
-        obj ? 
-        <div>
+        obj && data ? 
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           {
             obj.nextPage !== "NaN" ? <button onClick={() => {setPage(page + 1); setData([])}}>Next</button> : <></>
           }
@@ -241,17 +245,16 @@ function Burial() {
             obj.previousPage !== "NaN" ? <button onClick={() => {setPage(page - 1); setData([])}}>Previous</button> : <></>
           }
           
-
-          <br/>
-          <p>Page {page} of {obj.totalPages}</p>
         </div>
         : <></>
       }
-    </div>
+      <br/>
+      {obj.totalPages > 0 ? <p>Page {page} of {obj.totalPages}</p> : <></>}
     </div>
     </center>
         
         }
+
     </>
     );
 }

@@ -24,7 +24,7 @@
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
-    "userpoolClientRefreshTokenValidity": "5",
+    "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
       "name",
       "phone_number",
@@ -42,7 +42,7 @@
     "sharedId": "c49608fc",
     "resourceName": "amplifyc49608fc",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "manual",
+    "useDefault": "defaultSocial",
     "triggers": {
       "CustomMessage": [
         "verification-link"
@@ -76,17 +76,24 @@
         ]
       }
     ],
-    "thirdPartyAuth": false,
     "userPoolGroups": false,
     "adminQueries": true,
-    "hostedUI": false,
+    "hostedUI": true,
     "adminQueryGroup": "Admin",
     "verificationBucketName": "amplifyc49608fcverificationbucket",
-    "authProviders": [],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"CustomMessage\",\n    \"lambdaFunctionName\": \"amplifyc49608fcCustomMessage\"\n  }\n]",
-    "permissions": []
+    "authTriggerConnections": [
+      "{\"triggerType\":\"CustomMessage\",\"lambdaFunctionName\":\"amplifyc49608fcCustomMessage\"}"
+    ],
+    "permissions": [],
+    "hostedUIDomainName": "amplify7f39dd53-7f39dd53",
+    "authProvidersUserPool": [
+      "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://jon.d3glz5c7a2ti11.amplifyapp.com/\"],\"LogoutURLs\":[\"https://master.d3glz5c7a2ti11.amplifyapp.com/\"]}",
+    "authProviders": []
   }
 }

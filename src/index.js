@@ -9,7 +9,12 @@ import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
 import { AmplifyProvider } from '@aws-amplify/ui-react';
 import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react';
-Amplify.configure(config);
+Amplify.configure(config, {
+  Auth: {
+    // other auth configurations
+    signup: false
+  }
+});
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // const theme = {
 //   name: 'byu-look-alike',

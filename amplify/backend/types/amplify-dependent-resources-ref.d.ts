@@ -10,8 +10,10 @@ export type AmplifyDependentResourcesAttributes = {
     "amplifyc49608fc": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
+      "HostedUIDomain": "string",
       "IdentityPoolId": "string",
       "IdentityPoolName": "string",
+      "OAuthMetadata": "string",
       "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"
@@ -35,6 +37,12 @@ export type AmplifyDependentResourcesAttributes = {
   },
   "geo": {
     "Site": {
+      "Arn": "string",
+      "Name": "string",
+      "Region": "string",
+      "Style": "string"
+    },
+    "mapad39d218": {
       "Arn": "string",
       "Name": "string",
       "Region": "string",

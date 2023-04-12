@@ -49,7 +49,9 @@
         "signupAttributes": [
           "EMAIL"
         ],
-        "socialProviders": [],
+        "socialProviders": [
+          "GOOGLE"
+        ],
         "usernameAttributes": [],
         "verificationMechanisms": [
           "EMAIL"
@@ -82,6 +84,22 @@
   },
   "geo": {
     "Site": {
+      "accessType": "AuthorizedAndGuestUsers",
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "amplifyc49608fc"
+        }
+      ],
+      "isDefault": false,
+      "mapStyle": "VectorEsriStreets",
+      "providerPlugin": "awscloudformation",
+      "service": "Map"
+    },
+    "mapad39d218": {
       "accessType": "AuthorizedAndGuestUsers",
       "dependsOn": [
         {

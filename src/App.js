@@ -5,6 +5,7 @@ import "./App.css";
 // pages
 import Home from "./PageBody/Home";
 import Burial from "./PageBody/Burial";
+import BurialInfo from "./PageBody/BurialInfo";
 import Admin from "./PageBody/Admin";
 import Supervised from "./PageBody/Supervised";
 import Unsupervised from "./PageBody/Unsupervised";
@@ -39,6 +40,9 @@ function App({ signOut, user }) {
                 <Routes>
                   <Route path="/" element={<Home></Home>} />
                   <Route path="/burial" element={<Burial></Burial>} />
+                  <Route
+                    path="/burial/:id"
+                    element={<BurialInfo/>}/>
                   <Route
                     path="/supervised"
                     element={<Supervised></Supervised>}

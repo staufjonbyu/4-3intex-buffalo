@@ -1,9 +1,11 @@
 import React from "react";
 import "../App.css";
+import sand from './SiwaSandDunes.jpg'
 function Home() {
   return (
     <div>
       <main>
+        <img src={sand}></img>
         <section>
           <h2>Section 1</h2>
           <p>

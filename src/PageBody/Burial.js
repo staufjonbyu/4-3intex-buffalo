@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react';
 
-const mainUrl = 'http://intexapi-env-1.eba-27nra4uc.us-east-1.elasticbeanstalk.com/api'
+const mainUrl = 'https://intexapi-env-1.eba-27nra4uc.us-east-1.elasticbeanstalk.com/api'
 
 function Burial() {
   const { authStatus } = useAuthenticator(context => [context.authStatus]);

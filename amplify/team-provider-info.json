@@ -22,15 +22,18 @@
           "EMAILSUBJECT": "Hacked! Jkjk this is legit trust us",
           "EMAILMESSAGE": "Hey thanks for signing up",
           "deploymentBucketName": "amplify-amplify-dev-184616-deployment",
-          "s3Key": "amplify-builds/amplifyc49608fcCustomMessage-4f735964766f576d644a-build.zip"
+          "s3Key": "amplify-builds/amplifyc49608fcCustomMessage-4a665a304b374f612f57-build.zip"
         },
         "AdminQueries58d9d897": {
           "deploymentBucketName": "amplify-amplify-dev-184616-deployment",
-          "s3Key": "amplify-builds/AdminQueries58d9d897-67734e6d6a6f30682f46-build.zip"
+          "s3Key": "amplify-builds/AdminQueries58d9d897-47754f48646647746539-build.zip"
         }
       },
       "api": {
         "AdminQueries": {}
+      },
+      "geo": {
+        "Site": {}
       }
     }
   }

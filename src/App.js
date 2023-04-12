@@ -15,7 +15,7 @@ import CookieBanner from "./Auth/CookieConsent.js";
 import GDPR from "./PageBody/Gpdr";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
-import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react';
+import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 
 // import { Amplify } from 'aws-amplify';
 
@@ -26,65 +26,66 @@ import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react';
 // Amplify.configure(awsExports);
 
 function App({ signOut, user }) {
-  const { authStatus } = useAuthenticator(context => [context.authStatus]);
+  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
   return (
     <>
-      {authStatus !== 'authenticated' ? 
-      <div className="App">
-      <CookieBanner></CookieBanner>
-      <Authenticator.Provider>
-        <BrowserRouter>
-          <Header />
-          <body>
-
-            <Routes>
-              <Route path="/" element={<Home></Home>} />
-              <Route path="/burial" element={<Burial></Burial>} />
-              <Route path="/supervised" element={<Supervised></Supervised>} />
-              <Route
-                path="/unsupervised"
-                element={<Unsupervised></Unsupervised>}
-              />
-              <Route path="/login" element={<Login></Login>}></Route>
-              <Route path="/privacy" element={<GDPR></GDPR>} />
-            </Routes>
-            {/* {user.username}
-            <button onClick={signOut}>Sign out</button> */}
-          </body>
-          <Footer />
-        </BrowserRouter>
-      </Authenticator.Provider>
-      <CookieBanner></CookieBanner>
-    </div> : 
+      {authStatus !== "authenticated" ? (
         <div className="App">
-        <Authenticator.Provider>
-          <BrowserRouter>
-            <Header />
-            <body>
-  
-              <Routes>
-                <Route path="/" element={<Home></Home>} />
-                <Route path="/burial" element={<Burial></Burial>} />
-                <Route path="/admin" element={<Admin></Admin>} />
-                <Route path="/supervised" element={<Supervised></Supervised>} />
-                <Route
-                  path="/unsupervised"
-                  element={<Unsupervised></Unsupervised>}
-                />
-                <Route path="/login" element={<Login></Login>}></Route>
-                <Route path="/privacy" element={<GDPR></GDPR>} />
-              </Routes>
-              {/* {user.username}
+          <CookieBanner></CookieBanner>
+          <Authenticator.Provider>
+            <BrowserRouter>
+              <Header />
+              <body>
+                <Routes>
+                  <Route path="/" element={<Home></Home>} />
+                  <Route path="/burial" element={<Burial></Burial>} />
+                  <Route
+                    path="/supervised"
+                    element={<Supervised></Supervised>}
+                  />
+                  <Route
+                    path="/unsupervised"
+                    element={<Unsupervised></Unsupervised>}
+                  />
+                  <Route path="/login" element={<Login></Login>}></Route>
+                  <Route path="/privacy" element={<GDPR></GDPR>} />
+                </Routes>
+                {/* {user.username}
+            <button onClick={signOut}>Sign out</button> */}
+              </body>
+            </BrowserRouter>
+          </Authenticator.Provider>
+        </div>
+      ) : (
+        <div className="App">
+          <Authenticator.Provider>
+          <CookieBanner></CookieBanner>
+            <BrowserRouter>
+              <Header />
+              <body>
+                <Routes>
+                  <Route path="/" element={<Home></Home>} />
+                  <Route path="/burial" element={<Burial></Burial>} />
+                  <Route path="/admin" element={<Admin></Admin>} />
+                  <Route
+                    path="/supervised"
+                    element={<Supervised></Supervised>}
+                  />
+                  <Route
+                    path="/unsupervised"
+                    element={<Unsupervised></Unsupervised>}
+                  />
+                  <Route path="/login" element={<Login></Login>}></Route>
+                  <Route path="/privacy" element={<GDPR></GDPR>} />
+                </Routes>
+                {/* {user.username}
               <button onClick={signOut}>Sign out</button> */}
-            </body>
-            <Footer />
-          </BrowserRouter>
-        </Authenticator.Provider>
-      </div>
-        
-        }
+              </body>
+            </BrowserRouter>
+          </Authenticator.Provider>
+        </div>
+      )}
     </>
-    
   );
 }
 export default App;

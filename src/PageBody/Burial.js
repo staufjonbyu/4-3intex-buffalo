@@ -167,7 +167,7 @@ function Burial() {
         data.map(x => {
           return(
             <tr>
-              <td>{x.burialnumber}</td>
+              <td><a href={`/burial/${x.id}`}>{x.burialnumber}</a></td>
               <td>{x.area}</td>
               <td>{x.ageatdeath}</td>
               <td>{x.sex}</td>
@@ -218,7 +218,7 @@ function Burial() {
                 return(
                   <tr>
                     <tr>
-                    <td>{x.burialnumber}</td>
+                    <td><a href={`/burial/${x.id}`}>{x.burialnumber}</a></td>
                     <td>{x.area}</td>
                     <td>{x.ageatdeath}</td>
                     <td>{x.sex}</td>

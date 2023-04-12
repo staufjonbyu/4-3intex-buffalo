@@ -7,9 +7,10 @@ function Admin() {
     <Authenticator>
       {({ signOut, user }) => (
         <div>
-          <h1>Hey {user.username} you are already signed in</h1>
+          <h1>Welcome {user.attributes.email}</h1>
           <h3>You are authenticated</h3>
-          <button onClick={signOut}>signOut</button>
+          <a className="button" href='/burial'>Go to Burial</a>
+
         </div>
       )}
     </Authenticator>

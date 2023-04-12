@@ -1,4 +1,5 @@
 import React from "react";
+import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react';
 
 function unsupervised() {
   return (
@@ -116,6 +117,23 @@ function unsupervised() {
       <p></p>
     </div>
   );
+=======
+function Unsupervised(){
+    const { authStatus } = useAuthenticator(context => [context.authStatus]);
+    return(
+<>
+      {authStatus !== 'authenticated' ? 
+        <div>
+            <p>Place Non Auth stuff Here</p>
+        </div> : 
+        <div>
+             <p>Place Auth stuff here</p>   
+        </div>
+        
+        }
+    </>
+    );
+>>>>>>> 285fd8f15a62db7c4d7b39cbeb517eac9b5cc3e7
 }
 
 export default unsupervised;

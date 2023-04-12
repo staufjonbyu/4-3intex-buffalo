@@ -80,7 +80,7 @@
     "userPoolGroups": false,
     "adminQueries": true,
     "hostedUI": false,
-    "adminQueryGroup": "admin",
+    "adminQueryGroup": "Admin",
     "verificationBucketName": "amplifyc49608fcverificationbucket",
     "authProviders": [],
     "parentStack": {

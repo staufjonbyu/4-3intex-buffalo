@@ -55,11 +55,11 @@ function App({ signOut, user }) {
               </body>
             </BrowserRouter>
           </Authenticator.Provider>
-          <CookieBanner></CookieBanner>
         </div>
       ) : (
         <div className="App">
           <Authenticator.Provider>
+          <CookieBanner></CookieBanner>
             <BrowserRouter>
               <Header />
               <body>

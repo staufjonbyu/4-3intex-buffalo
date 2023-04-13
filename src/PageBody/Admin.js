@@ -3,6 +3,43 @@ import { API } from 'aws-amplify';
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import { Auth, Authenticator, AmplifySignOut } from 'aws-amplify';
 
+
+async function addToGroup() { 
+  let apiName = 'AdminQueries';
+  let path = '/addUserToGroup';
+  let myInit = {
+      body: {
+        "username" : "richard",
+        "groupname": "Admin"
+      }, 
+      headers: {
+        'Content-Type' : 'application/json',
+        Authorization: `${(await Auth.currentSession()).getAccessToken().getJwtToken()}`
+      } 
+  }
+  return await API.post(apiName, path, myInit);
+}
+
+let nextToken;
+
+async function listUsers(limit){
+  let apiName = 'AdminQueries';
+  let path = '/listUsers';
+  let myInit = { 
+      queryStringParameters: {
+        "groupname": "Editors",
+        "limit": limit,
+        "token": nextToken
+      },
+      headers: {
+        'Content-Type' : 'application/json',
+        Authorization: `${(await Auth.currentSession()).getAccessToken().getJwtToken()}`
+      }
+  }
+  const { NextToken, ...rest } =  await API.get(apiName, path, myInit);
+  nextToken = NextToken;
+  return rest;
+}
 function Admin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -10,6 +47,8 @@ function Admin() {
   const [errorMessage, setErrorMessage] = useState('');
   const [users, setUsers] = useState([]);
   
+
+
   // useEffect(() => {
   //   async function getUsers() {
   //     try {
@@ -87,6 +126,9 @@ function Admin() {
         <br />
         <button type="submit">Create User</button>
       </form>
+      <div>
+      <button onClick={() => listUsers(10)}>List Editors</button>
+      </div>
       {/* <div>
       <h1>Users</h1>
       <ul>

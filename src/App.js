@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
-import "./Custom.css";
-import "./App.css";
+//import "./Custom.css";
+//import "./App.css";
 
 // pages
 import Home from "./PageBody/Home";
@@ -63,7 +63,7 @@ function App({ signOut, user }) {
       ) : (
         <div className="App">
           <Authenticator.Provider>
-          <CookieBanner></CookieBanner>
+            <CookieBanner></CookieBanner>
             <BrowserRouter>
               <Header />
               <body>

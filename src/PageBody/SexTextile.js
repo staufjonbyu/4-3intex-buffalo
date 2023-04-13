@@ -6,22 +6,28 @@ import axios from "axios";
 function SexTextile() {
   const url = "https://de8jo1lugqs3e.cloudfront.net/sextextile";
 
-  const [length, setLength] = useState();
-  const [hair, setHair] = useState();
-  const [wrapping, setWrapping] = useState();
+  const [length, setLength] = useState(0);
+  const [hair, setHair] = useState(0);
+  const [wrapping, setWrapping] = useState(0);
   const [age, setAge] = useState(true);
+
+  const [display, setDisplay] = useState(false);
+  const [data, setData] = useState("");
 
   function axiosRequest() {
     const wrappingBody = {
       length: parseInt(length),
       haircolor_r: parseInt(hair),
       wrapping_b: wrapping === "B" ? 1 : 0,
-      ageatdeath: parseInt(age),
+      ageatdeath: age ? 1 : 0,
     };
 
     axios
       .post(url, wrappingBody)
-      .then((res) => console.log(res.data.predictedValue));
+      .then((res) => setData(res.data.predictedValue));
+
+    setDisplay(!display);
+
     // //axios.post(`${url}addticket`, obj).then(() => console.log('Ticket added'));
   }
 
@@ -56,7 +62,7 @@ function SexTextile() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        placeholder="0-2.5"
+                        placeholder="0-10"
                         onKeyUp={(e) => {
                           setLength(e.target.value);
                         }}
@@ -124,6 +130,26 @@ function SexTextile() {
                 >
                   Submit
                 </button>
+                <div
+                  style={{ display: display ? "block" : "none" }}
+                  className="card rounded-3 mt-3"
+                >
+                  <h3 class="mb-4 mt-4">
+                    Prediction:{" "}
+                    {data === "m"
+                      ? "Male"
+                      : data === "f"
+                      ? "Female"
+                      : "Unknown"}
+                  </h3>
+                  <button
+                    onClick={() => window.location.reload()}
+                    type="button"
+                    class="btn btn-primary mb-4"
+                  >
+                    Reset
+                  </button>
+                </div>
               </div>
             </div>
           </div>

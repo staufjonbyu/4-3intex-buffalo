@@ -6,11 +6,13 @@ import axios from "axios";
 function Wrapping() {
   const url = "https://de8jo1lugqs3e.cloudfront.net/wrapping";
 
-  const [depth, setDepth] = useState();
-  const [femur, setFemur] = useState();
-  const [hair, setHair] = useState();
-  const [area, setArea] = useState();
+  const [depth, setDepth] = useState(0);
+  const [femur, setFemur] = useState(0);
+  const [hair, setHair] = useState(0);
+  const [area, setArea] = useState(0);
   const [adult, setAdult] = useState(false);
+  const [display, setDisplay] = useState(false);
+  const [data, setData] = useState("");
 
   function axiosRequest() {
     const wrappingBody = {
@@ -24,9 +26,10 @@ function Wrapping() {
 
     axios
       .post(url, wrappingBody)
-      .then((res) => console.log(res.data.predictedValue));
+      .then((res) => setData(res.data.predictedValue));
 
-    console.log(wrappingBody);
+    setDisplay(!display);
+
     // //axios.post(`${url}addticket`, obj).then(() => console.log('Ticket added'));
   }
 
@@ -62,7 +65,7 @@ function Wrapping() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        placeholder="0-2.5"
+                        placeholder="0-3"
                         onKeyUp={(e) => {
                           setDepth(e.target.value);
                         }}
@@ -79,7 +82,7 @@ function Wrapping() {
                         type="type"
                         id="depth"
                         class="form-control"
-                        placeholder="0-27"
+                        placeholder="0-50"
                         onKeyUp={(e) => {
                           setFemur(e.target.value);
                         }}
@@ -142,6 +145,28 @@ function Wrapping() {
                 >
                   Submit
                 </button>
+                <div
+                  style={{ display: display ? "block" : "none" }}
+                  className="card rounded-3 mt-3"
+                >
+                  <h3 class="mb-4 mt-4">
+                    Prediction:{" "}
+                    {data === "w"
+                      ? "Whole"
+                      : data === "h"
+                      ? "Partial"
+                      : data === "b"
+                      ? "Bones"
+                      : "Unknown"}
+                  </h3>
+                  <button
+                    onClick={() => window.location.reload()}
+                    type="button"
+                    class="btn btn-primary mb-4"
+                  >
+                    Reset
+                  </button>
+                </div>
               </div>
             </div>
           </div>

@@ -14,8 +14,11 @@ function Supervised() {
     <>
       {authStatus !== "authenticated" ? (
         <Tab.Container id="tabs" defaultActiveKey="first">
-          <Row>
-            <Col md={3}>
+          <Row className="m-5">
+            <Col
+              md={3}
+              className="p-5 justify-content-center align-items-center"
+            >
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
                   <Nav.Link eventKey="first">Wrapping</Nav.Link>

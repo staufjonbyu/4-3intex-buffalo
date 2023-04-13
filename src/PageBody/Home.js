@@ -3,10 +3,10 @@ import { MapView } from "@aws-amplify/ui-react";
 import "../Home.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import digsite from "./DigSite.jpg";
-import sand from "./SiwaSandDunes.jpg";
-import tombs from "./tombs.jpg";
-import map from "./map.jpg";
+import digsite from "./images/DigSite.jpg";
+import sand from "./images/SiwaSandDunes.jpg";
+import tombs from "./images/tombs.jpg";
+import map from "./images/map.jpg";
 
 function Home() {
   return (

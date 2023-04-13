@@ -3,66 +3,60 @@ import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "./BurialStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-function convertAge(age){
+function convertAge(age) {
   const ages = {
-    "A": "Adult",
-    "C": "Child",
-    "I": "Infant",
-    "IN": "Infant",
-    "N": "Newborn",
-    "U": "Unknown"
-};
+    A: "Adult",
+    C: "Child",
+    I: "Infant",
+    IN: "Infant",
+    N: "Newborn",
+    U: "Unknown",
+  };
 
-  if (age in ages){
-    return(ages[age]);
+  if (age in ages) {
+    return ages[age];
   }
   return "";
 }
 
-function convertSex(sex)
-{
+function convertSex(sex) {
   const sexes = {
-    "M": "Male",
-    "F": "Female",
-    "U": "Unknown"
+    M: "Male",
+    F: "Female",
+    U: "Unknown",
   };
 
-  if (sex in sexes)
-  {
+  if (sex in sexes) {
     return sexes[sex];
   }
   return "";
 }
 
-function convertHair(hair)
-{
+function convertHair(hair) {
   const haircolors = {
-    "B": "Brown",
-    "K": "Black",
-    "A": "Brown-Red",
-    "R": "Red",
-    "D": "Blonde",
-    "U": "Unknown"
-};
+    B: "Brown",
+    K: "Black",
+    A: "Brown-Red",
+    R: "Red",
+    D: "Blonde",
+    U: "Unknown",
+  };
 
-  if (hair in haircolors)
-  {
+  if (hair in haircolors) {
     return haircolors[hair];
   }
   return "";
 }
 
-function convertWrapping(wrap)
-{
+function convertWrapping(wrap) {
   const wrappings = {
-    "W": "Full remains",
-    "H": "Partial remains",
-    "B": "Bones/Partial remains",
-    "S": "Unknown"
-};
+    W: "Full remains",
+    H: "Partial remains",
+    B: "Bones/Partial remains",
+    S: "Unknown",
+  };
 
-  if (wrap in wrappings)
-  {
+  if (wrap in wrappings) {
     return wrappings[wrap];
   }
   return "";
@@ -102,20 +96,26 @@ function Burial() {
   //
   return (
     <>
-        <div>
-          <button type="button" onClick={() => window.location.reload()}>Reset Filters</button>
-        </div>
+      <div>
+        <button type="button" onClick={() => window.location.reload()}>
+          Reset Filters
+        </button>
+      </div>
       {authStatus !== "authenticated" ? (
         <center>
-
-        
           <div>
             <br />
             <div style={{ height: "500px", overflow: "auto" }}>
               <table className="table table-striped table-bordered">
                 <thead>
                   <tr>
-                    <th><input type="checkbox" onChange={() => setBNum(!bNum)}></input>Burial Number</th>
+                    <th>
+                      <input
+                        type="checkbox"
+                        onChange={() => setBNum(!bNum)}
+                      ></input>
+                      Burial Number
+                    </th>
                     <th>
                       <select
                         onChange={(i) => {
@@ -153,7 +153,7 @@ function Burial() {
                       </select>
                     </th>
                     <th>
-                      <select 
+                      <select
                         onChange={(i) => {
                           setSex(i.target.value);
                         }}
@@ -199,7 +199,9 @@ function Burial() {
                         </option>
                         {filter.wrappings ? (
                           filter.wrappings.map((a) => {
-                            return <option value={a}>{convertWrapping(a)}</option>;
+                            return (
+                              <option value={a}>{convertWrapping(a)}</option>
+                            );
                           })
                         ) : (
                           <></>
@@ -243,28 +245,62 @@ function Burial() {
                       </select>
                     </th> */}
                     <th>
-                      <input type="checkbox" onChange={() => setDepth(!depth)}></input>Burial Depth 
+                      <input
+                        type="checkbox"
+                        onChange={() => setDepth(!depth)}
+                      ></input>
+                      Burial Depth
                     </th>
                     <th>
-                    <input type="checkbox" onChange={() => setLength(!length)}></input>Burial Length 
+                      <input
+                        type="checkbox"
+                        onChange={() => setLength(!length)}
+                      ></input>
+                      Burial Length
                     </th>
+                    <th>Edit</th>
                   </tr>
                 </thead>
                 <tbody>
-                  { data !== [] ? data.map((x) => {
-                    return (
-                      <tr>
-                        <td><a href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}>{x.burialnumber}</a></td>
-                        <td>{x.area}</td>
-                        <td>{x.ageatdeath}</td>
-                        <td>{x.sex}</td>
-                        <td>{x.haircolor}</td>
-                        <td>{x.wrapping}</td>
-                        <td>{x.depth}</td>
-                        <td>{x.length}</td>
-                      </tr>
-                    );
-                  }) : <h3>Loading Data</h3>}
+                  {data !== [] ? (
+                    data.map((x) => {
+                      return (
+                        <tr>
+                          <td>
+                            <a
+                              href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
+                            >
+                              {x.burialnumber}
+                            </a>
+                          </td>
+                          <td>{x.area}</td>
+                          <td>{x.ageatdeath}</td>
+                          <td>{x.sex}</td>
+                          <td>{x.haircolor}</td>
+                          <td>{x.wrapping}</td>
+                          <td>{x.depth}</td>
+                          <td>{x.length}</td>
+                          <td>
+                            <a
+                              href={`/edit/${
+                                x.burialnumber ? x.burialnumber : ""
+                              }/${x.area ? x.area : ""}/${
+                                x.eastwest ? x.eastwest : ""
+                              }/${x.squareeastwest ? x.squareeastwest : ""}/${
+                                x.northsouth ? x.northsouth : ""
+                              }/${
+                                x.squarenorthsouth ? x.squarenorthsouth : ""
+                              }`}
+                            >
+                              Edit
+                            </a>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <h3>Loading Data</h3>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -284,7 +320,7 @@ function Burial() {
                 ) : (
                   <></>
                 )}
-                
+
                 {obj.nextPage !== "NaN" ? (
                   <button
                     onClick={() => {
@@ -297,7 +333,6 @@ function Burial() {
                 ) : (
                   <></>
                 )}
-                
               </div>
             ) : (
               <></>
@@ -325,20 +360,30 @@ function Burial() {
                   </tr>
                 </thead>
                 <tbody>
-                { data !== [] ? data.map((x) => {
-                    return (
-                      <tr>
-                        <td><a href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}>{x.burialnumber}</a></td>
-                        <td>{x.area}</td>
-                        <td>{x.ageatdeath}</td>
-                        <td>{x.sex}</td>
-                        <td>{x.haircolor}</td>
-                        <td>{x.wrapping}</td>
-                        <td>{x.depth}</td>
-                        <td>{x.length}</td>
-                      </tr>
-                    );
-                  }) : <h3>Loading Data</h3>}
+                  {data !== [] ? (
+                    data.map((x) => {
+                      return (
+                        <tr>
+                          <td>
+                            <a
+                              href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
+                            >
+                              {x.burialnumber}
+                            </a>
+                          </td>
+                          <td>{x.area}</td>
+                          <td>{x.ageatdeath}</td>
+                          <td>{x.sex}</td>
+                          <td>{x.haircolor}</td>
+                          <td>{x.wrapping}</td>
+                          <td>{x.depth}</td>
+                          <td>{x.length}</td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <h3>Loading Data</h3>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -358,7 +403,7 @@ function Burial() {
                 ) : (
                   <></>
                 )}
-                
+
                 {obj.nextPage !== "NaN" ? (
                   <button
                     onClick={() => {
@@ -371,7 +416,6 @@ function Burial() {
                 ) : (
                   <></>
                 )}
-                
               </div>
             ) : (
               <></>

@@ -2,10 +2,10 @@ import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import { Tab, Nav, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import Wrapping from "./Wrapping";
-import SexTextile from "./SexTextile";
-import Sex from "./Sex";
-import HeadDirection from "./HeadDirection";
+import Wrapping from "./Supervised/Wrapping";
+import SexTextile from "./Supervised/SexTextile";
+import Sex from "./Supervised/Sex";
+import HeadDirection from "./Supervised/HeadDirection";
 
 function Supervised() {
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);

@@ -6,7 +6,7 @@ import {
 import "@aws-amplify/ui-react/styles.css";
 import { API, Auth } from "aws-amplify";
 import React, { useState, useEffect } from "react";
-
+import NewEntry from "./Admin/NewEntry";
 import awsconfig from "./../aws-exports";
 
 function Admin() {
@@ -32,7 +32,9 @@ function Admin() {
       {authStatus === "configuring"}
       {authStatus !== "authenticated" ? (
         <div>
-          <h4>please sign in</h4>
+          <a href="/newentry" className="nav-link text-dark border">
+            Home
+          </a>
         </div>
       ) : (
         <Authenticator>

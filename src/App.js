@@ -12,8 +12,10 @@ import Unsupervised from "./PageBody/Unsupervised";
 import Login from "./PageBody/Login";
 import Header from "./Header";
 import Footer from "./Footer";
+import NewEntry from "./PageBody/Admin/NewEntry";
 import CookieBanner from "./Auth/CookieConsent.js";
 import GDPR from "./PageBody/Gpdr";
+import EditEntry from "./PageBody/Admin/EditEntry";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
@@ -49,8 +51,9 @@ function App({ signOut, user }) {
                   <Route path="/burial" element={<Burial></Burial>} />
                   <Route
                     path="/burial/:burialNum/:area/:eastWest/:sqew/:northSouth/:sqns"
-                    element={<BurialInfo/>}/>
-                    {/* string burialNum, string area, string eastWest, string sqew, string northSouth, string sqns */}
+                    element={<BurialInfo />}
+                  />
+                  {/* string burialNum, string area, string eastWest, string sqew, string northSouth, string sqns */}
                   <Route
                     path="/supervised"
                     element={<Supervised></Supervised>}
@@ -61,6 +64,12 @@ function App({ signOut, user }) {
                   />
                   <Route path="/login" element={<Login></Login>}></Route>
                   <Route path="/privacy" element={<GDPR></GDPR>} />
+                  <Route path="/newentry" element={<NewEntry></NewEntry>} />
+                  <Route path="/edit" element={<EditEntry></EditEntry>} />
+                  <Route
+                    path="/edit/:burialNum/:area/:eastWest/:sqew/:northSouth/:sqns"
+                    element={<EditEntry></EditEntry>}
+                  />
                 </Routes>
                 {/* {user.username}
             <button onClick={signOut}>Sign out</button> */}

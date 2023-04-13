@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 
-const mainUrl = 'https://localhost:7127/api';
+const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api";
 
 export default function BurialInfo(){
-    let { id } = useParams();
+    let { burialNum, area, eastWest, sqew, northSouth, sqns } = useParams();
     const [data, setData] = useState({})
 
     useEffect(() => {
         async function getData()
         {
-            const url = `${mainUrl}/Info/${id}`;
+            const url = `${mainUrl}/Info/${burialNum}/${area}/${eastWest}/${sqew}/${northSouth}/${sqns}`;
             const response = await fetch(url);
             const result = await response.json();
             setData(result.result);
@@ -19,28 +19,11 @@ export default function BurialInfo(){
         getData();
     },[]);
 
-    function axiosRequest() {
-        const wrappingBody = {
-          depth: 0,
-          femurLength: 0,
-          adultsubadult_: 0,
-          hairColor_brown: 0,
-          area_ne: 0,
-          area_se: 0,
-        };
-    
-        axios
-          .post(mainUrl, wrappingBody)
-          .then((res) => console.log(res.data.predictedValue));
-        // //axios.post(`${url}addticket`, obj).then(() => console.log('Ticket added'));
-    
-        
-        }
-
     
 
     return(
         <div>
+            {data.url ? <img src={data.url}></img> : <p>No image to display</p>}
             <h4>Burial #{data.burialnumber}</h4>
             <div>
                 <p>
@@ -52,8 +35,10 @@ export default function BurialInfo(){
                 <p>
                     Length: {data.length}
                 </p>
+                <p>
+                    Location: <b>{data.squarenorthsouth + ' ' + data.northsouth + ' ' + data.squareeastwest + ' ' + data.eastwest}</b>
+                </p>
             </div>
-            <button type="button" onClick={() => axiosRequest()}>axios</button>
         </div>
     )
 

@@ -3,8 +3,8 @@ import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "./BurialStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-
-const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api";
+const mainUrl = "https://localhost:7127/api";
+//const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api";
 function Burial() {
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
   const [page, setPage] = useState(1);
@@ -33,10 +33,17 @@ function Burial() {
   }, [page, ages, sex, wrappings, hairColors, areas]);
   //
 
+  
+
   return (
     <>
+        <div>
+          <button type="button" onClick={() => window.location.reload()}>Reset Filters</button>
+        </div>
       {authStatus !== "authenticated" ? (
         <center>
+
+        
           <div>
             <br />
             <div style={{ height: "500px", overflow: "auto" }}>
@@ -123,7 +130,7 @@ function Burial() {
                         }}
                       >
                         <option selected disabled>
-                          Select Head Direction
+                          Select Wrapping
                         </option>
                         {filter.wrappings ? (
                           filter.wrappings.map((a) => {
@@ -134,7 +141,7 @@ function Burial() {
                         )}
                       </select>
                     </th>
-                    <th>
+                    {/* <th>
                       <select
                         onChange={(i) => {
                           setAge(i.target.value);
@@ -169,7 +176,7 @@ function Burial() {
                           <></>
                         )}
                       </select>
-                    </th>
+                    </th> */}
                     <th>
                       <select
                         onChange={(i) => {
@@ -177,7 +184,7 @@ function Burial() {
                         }}
                       >
                         <option selected disabled>
-                          Select Burial Depth
+                          Select Depth
                         </option>
                         {filter.hairColors ? (
                           filter.hairColors.map((a) => {
@@ -195,7 +202,7 @@ function Burial() {
                         }}
                       >
                         <option selected disabled>
-                          Select Mummy Length
+                          Select Length
                         </option>
                         {filter.wrappings ? (
                           filter.wrappings.map((a) => {
@@ -212,12 +219,14 @@ function Burial() {
                   {data.map((x) => {
                     return (
                       <tr>
-                        <td>{x.burialnumber}</td>
+                        <td><a href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}>{x.burialnumber}</a></td>
                         <td>{x.area}</td>
                         <td>{x.ageatdeath}</td>
                         <td>{x.sex}</td>
                         <td>{x.haircolor}</td>
                         <td>{x.wrapping}</td>
+                        <td>{x.depth}</td>
+                        <td>{x.length}</td>
                       </tr>
                     );
                   })}
@@ -283,12 +292,14 @@ function Burial() {
                     return (
                       <tr>
                         <tr>
-                          <td>{x.burialnumber}</td>
+                          <td><a href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}>{x.burialnumber}</a></td>
                           <td>{x.area}</td>
                           <td>{x.ageatdeath}</td>
                           <td>{x.sex}</td>
                           <td>{x.haircolor}</td>
                           <td>{x.wrapping}</td>
+                          <td>{x.depth}</td>
+                          <td>{x.length}</td>
                         </tr>
                       </tr>
                     );

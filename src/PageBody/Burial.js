@@ -3,8 +3,8 @@ import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "./BurialStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-const mainUrl = "https://localhost:7127/api";
-//const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api";
+//const mainUrl = "https://localhost:7127/api";
+const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api";
 function Burial() {
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
   const [page, setPage] = useState(1);

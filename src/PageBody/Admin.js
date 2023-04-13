@@ -1,61 +1,119 @@
-import { Authenticator, useAuthenticator, withAuthenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-import { API, Auth } from 'aws-amplify';
-import React, {useState, useEffect} from 'react';
+import { useEffect, useState } from 'react';
+import { Amplify, API } from 'aws-amplify';
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import { Auth, Authenticator } from 'aws-amplify';
 
-import awsconfig from './../aws-exports';
+async function addToGroup() { 
+  let apiName = 'AdminQueries';
+  let path = '/addUserToGroup';
+  let myInit = {
+      body: {
+        "username" : "richard",
+        "groupname": "Admin"
+      }, 
+      headers: {
+        'Content-Type' : 'application/json',
+        Authorization: `${(await Auth.currentSession()).getAccessToken().getJwtToken()}`
+      } 
+  }
+  return await API.post(apiName, path, myInit);
+}
 
+let nextToken;
 
-
-
-
+async function listUsers(limit){
+  let apiName = 'AdminQueries';
+  let path = '/listUsersInGroup';
+  let myInit = { 
+      queryStringParameters: {
+        "groupname": "Editors",
+        "limit": limit,
+        "token": nextToken
+      },
+      headers: {
+        'Content-Type' : 'application/json',
+        Authorization: `${(await Auth.currentSession()).getAccessToken().getJwtToken()}`
+      }
+  }
+  const { NextToken, ...rest } =  await API.get(apiName, path, myInit);
+  nextToken = NextToken;
+  return rest;
+}
 
 function Admin() {
-  const { authStatus } = useAuthenticator(context => [context.authStatus]);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const usersData = await Auth.listUsers('us-east-1_0B3eMtrZ1');
-        setUsers(usersData);
-      } catch (error) {
-        console.log('Error listing users', error);
-      }
+  
+
+
+  async function handleCreateUser(event) {
+    event.preventDefault();
+
+    try {
+      await Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email,
+        },
+      });
+      setErrorMessage('');
+      setUsername('');
+      setPassword('');
+      setEmail('');
+      alert('User created successfully!');
+    } catch (error) {
+      setErrorMessage(error.message);
     }
+  }
 
-    fetchUsers();
-  }, []);
-  // Use the value of authStatus to decide which page to render
   return (
-    <>
-      {authStatus === 'configuring'}
-      {authStatus !== 'authenticated' ?
-        <div>
-          <h4>please sign in</h4>
-        </div> :
-        <Authenticator>
-          <div>
-            <h3>Welcom to the admin portal</h3>
-
-          </div>
-          <div>
-          <h2>User List</h2>
-          <ul>
-            {users.map(user => (
-              <li key={user.Username}>
-                <p>Username: {user.Username}</p>
-                <p>Email: {user.Attributes.find(attr => attr.Name === 'email').Value}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-        </Authenticator>
-
-      }
-    </>
+    <div>
+      <h1>Create a new user</h1>
+      {errorMessage && <p>{errorMessage}</p>}
+      <form onSubmit={handleCreateUser}>
+        <label>
+          Username:
+          <input
+            type="text"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </label>
+        <br />
+        <button type="submit">Create User</button>
+      </form>
+      <br></br>
+      <br></br>
+      <br></br>
+      <div>
+      <button onClick={addToGroup}>Add to Group</button>
+      <button onClick={() => listUsers(10)}>List Users</button>
+    </div>
+    </div>
   );
-};
+}
 
 export default withAuthenticator(Admin);

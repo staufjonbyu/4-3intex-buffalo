@@ -24,10 +24,10 @@ function Supervised() {
                   <Nav.Link eventKey="first">Wrapping</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="second">Sex Textiles</Nav.Link>
+                  <Nav.Link eventKey="second">Sex with Textiles</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="third">Sex</Nav.Link>
+                  <Nav.Link eventKey="third">Sex with Body Analysis</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="fourth">Head Direction</Nav.Link>

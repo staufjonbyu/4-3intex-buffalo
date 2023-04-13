@@ -50,7 +50,7 @@ function SexTextile() {
             <div class="card rounded-3">
               <div class="card-body p-4 p-md-5">
                 <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
-                  Enter Sex Textile Prediction Info
+                  Enter Sex and Textile Prediction Info
                 </h3>
                 <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
                   <div class="col-6">

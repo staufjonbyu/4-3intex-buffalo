@@ -6,9 +6,11 @@ import axios from "axios";
 function HeadDirection() {
   const url = "https://de8jo1lugqs3e.cloudfront.net/headdirection";
 
-  const [depth, setDepth] = useState();
+  const [depth, setDepth] = useState(0);
   const [samples, setSamples] = useState(true);
-  const [area, setArea] = useState();
+  const [area, setArea] = useState(0);
+  const [display, setDisplay] = useState(false);
+  const [data, setData] = useState("");
 
   function axiosRequest() {
     const wrappingBody = {
@@ -19,7 +21,9 @@ function HeadDirection() {
 
     axios
       .post(url, wrappingBody)
-      .then((res) => console.log(res.data.predictedValue));
+      .then((res) => setData(res.data.predictedValue));
+
+    setDisplay(!display);
     // //axios.post(`${url}addticket`, obj).then(() => console.log('Ticket added'));
   }
 
@@ -53,7 +57,7 @@ function HeadDirection() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        placeholder="0-2.5"
+                        placeholder="0-3"
                         onKeyUp={(e) => {
                           setDepth(e.target.value);
                         }}
@@ -98,6 +102,30 @@ function HeadDirection() {
                 >
                   Submit
                 </button>
+                <div
+                  style={{ display: display ? "block" : "none" }}
+                  className="card rounded-3 mt-3"
+                >
+                  <h3 class="mb-4 mt-4">
+                    Prediction:{" "}
+                    {data === "e"
+                      ? "East"
+                      : data === "w"
+                      ? "West"
+                      : data === "s"
+                      ? "South"
+                      : data === "n"
+                      ? "North"
+                      : "Unknown"}
+                  </h3>
+                  <button
+                    onClick={() => window.location.reload()}
+                    type="button"
+                    class="btn btn-primary mb-4"
+                  >
+                    Reset
+                  </button>
+                </div>
               </div>
             </div>
           </div>

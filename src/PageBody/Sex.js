@@ -5,11 +5,14 @@ import axios from "axios";
 function Sex() {
   const url = "https://de8jo1lugqs3e.cloudfront.net/sex";
 
-  const [depth, setDepth] = useState();
-  const [length, setLength] = useState();
-  const [westtofeet, setWest] = useState();
-  const [wrapping, setWrapping] = useState();
-  const [area, setArea] = useState();
+  const [depth, setDepth] = useState(0);
+  const [length, setLength] = useState(0);
+  const [westtofeet, setWest] = useState(0);
+  const [wrapping, setWrapping] = useState(0);
+  const [area, setArea] = useState(0);
+
+  const [display, setDisplay] = useState(false);
+  const [data, setData] = useState("");
 
   function axiosRequest() {
     const wrappingBody = {
@@ -22,7 +25,10 @@ function Sex() {
 
     axios
       .post(url, wrappingBody)
-      .then((res) => console.log(res.data.predictedValue));
+      .then((res) => setData(res.data.predictedValue));
+
+    setDisplay(!display);
+
     // //axios.post(`${url}addticket`, obj).then(() => console.log('Ticket added'));
   }
 
@@ -58,7 +64,7 @@ function Sex() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        placeholder="0-2.5"
+                        placeholder="0-3"
                         onKeyUp={(e) => {
                           setDepth(e.target.value);
                         }}
@@ -75,7 +81,7 @@ function Sex() {
                         type="type"
                         id="depth"
                         class="form-control"
-                        placeholder="0-27"
+                        placeholder="0-10"
                         onKeyUp={(e) => {
                           setLength(e.target.value);
                         }}
@@ -127,7 +133,7 @@ function Sex() {
                         type="type"
                         id="depth"
                         class="form-control"
-                        placeholder="0-27"
+                        placeholder="0-7"
                         onKeyUp={(e) => {
                           setWest(e.target.value);
                         }}
@@ -143,6 +149,26 @@ function Sex() {
                 >
                   Submit
                 </button>
+                <div
+                  style={{ display: display ? "block" : "none" }}
+                  className="card rounded-3 mt-3"
+                >
+                  <h3 class="mb-4 mt-4">
+                    Prediction:{" "}
+                    {data === "m"
+                      ? "Male"
+                      : data === "f"
+                      ? "Female"
+                      : "Unknown"}
+                  </h3>
+                  <button
+                    onClick={() => window.location.reload()}
+                    type="button"
+                    class="btn btn-primary mb-4"
+                  >
+                    Reset
+                  </button>
+                </div>
               </div>
             </div>
           </div>

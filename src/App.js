@@ -14,7 +14,7 @@ import Footer from "./Footer";
 import CookieBanner from "./Auth/CookieConsent.js";
 import GDPR from "./PageBody/Gpdr";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 
 // import { Amplify } from 'aws-amplify';
@@ -26,6 +26,13 @@ import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 // Amplify.configure(awsExports);
 
 function App({ signOut, user }) {
+  const [cookieAccepted, setCookieAccepted] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("cookieAccepted")) {
+      setCookieAccepted(true);
+    }
+  }, []);
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
   return (
     <>
@@ -52,6 +59,7 @@ function App({ signOut, user }) {
                 </Routes>
                 {/* {user.username}
             <button onClick={signOut}>Sign out</button> */}
+                {cookieAccepted && <Footer></Footer>}
               </body>
             </BrowserRouter>
           </Authenticator.Provider>
@@ -59,7 +67,7 @@ function App({ signOut, user }) {
       ) : (
         <div className="App">
           <Authenticator.Provider>
-          <CookieBanner></CookieBanner>
+            <CookieBanner></CookieBanner>
             <BrowserRouter>
               <Header />
               <body>
@@ -80,6 +88,7 @@ function App({ signOut, user }) {
                 </Routes>
                 {/* {user.username}
               <button onClick={signOut}>Sign out</button> */}
+                {cookieAccepted && <Footer></Footer>}
               </body>
             </BrowserRouter>
           </Authenticator.Provider>

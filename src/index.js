@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import './Custom.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+//import './Custom.css';
 import "bootstrap/dist/css/bootstrap.css";
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { Amplify } from 'aws-amplify';
-import config from './aws-exports';
-import { AmplifyProvider } from '@aws-amplify/ui-react';
-import {Authenticator, useAuthenticator} from '@aws-amplify/ui-react';
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Amplify } from "aws-amplify";
+import config from "./aws-exports";
+import { AmplifyProvider } from "@aws-amplify/ui-react";
+import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 Amplify.configure(config);
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 // const theme = {
 //   name: 'byu-look-alike',
 //   tokens: {
@@ -26,7 +26,6 @@ root.render(
     <Authenticator.Provider>
       <App />
     </Authenticator.Provider>
-
   </AmplifyProvider>
   // <React.StrictMode>
   // </React.StrictMode>

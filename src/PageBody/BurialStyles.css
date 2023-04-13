@@ -1,8 +1,76 @@
-#info table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-#info th, td {
-padding: 5px;
-text-align: left;
+table,
+th,
+td {
+  border: 3px solid black;
+  border-collapse: collapse;
+  font-weight: normal;
+}
+th,
+td {
+  padding: 5px;
+  text-align: left;
+}
+
+.column-header {
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.sort-button {
+  font-weight: normal;
+  height: 20px;
+  line-height: 10px;
+}
+
+/* Basic button styling */
+.pagination-button {
+  display: inline-block;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 12px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+/* Hover effect */
+.pagination-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Active/selected state */
+.pagination-button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* Disabled state */
+.pagination-button.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Arrow icon for previous button */
+.pagination-button.previous::before {
+  content: "<";
+  margin-right: 6px;
+}
+
+/* Arrow icon for next button */
+.pagination-button.next::after {
+  content: ">";
+  margin-left: 6px;
+}
+
+span {
+  text-align: center;
 }

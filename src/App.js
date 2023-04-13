@@ -48,8 +48,9 @@ function App({ signOut, user }) {
                   <Route path="/" element={<Home></Home>} />
                   <Route path="/burial" element={<Burial></Burial>} />
                   <Route
-                    path="/burial/:id"
+                    path="/burial/:burialNum/:area/:eastWest/:sqew/:northSouth/:sqns"
                     element={<BurialInfo/>}/>
+                    {/* string burialNum, string area, string eastWest, string sqew, string northSouth, string sqns */}
                   <Route
                     path="/supervised"
                     element={<Supervised></Supervised>}

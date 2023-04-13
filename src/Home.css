@@ -1,0 +1,83 @@
+header {
+  background-color: #002e5d;
+  color: white;
+  font-family: var(--headlineFont), HCo Ringside Narrow SSm, Open Sans,
+    Helvetica, Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+body {
+  color: #002e5d;
+  background-color: white;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* footer {
+    background-color: #002e5d;
+    color: white;
+  } */
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+.slide img {
+  max-height: 400px;
+  max-width: 100%;
+}
+
+.slider-wrapper {
+  margin-bottom: -15px;
+  position: relative;
+}
+
+.carousel .arrows {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.carousel .arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 5%;
+  height: 100%;
+  color: #fff;
+  font-size: 2em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.carousel .arrow:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mapview {
+  text-align: center;
+}
+
+p {
+  text-align: left;
+  font-size: 18px;
+}
+
+.link {
+  color: blue;
+  text-decoration: none;
+}

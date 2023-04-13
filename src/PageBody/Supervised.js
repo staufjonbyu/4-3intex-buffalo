@@ -5,6 +5,7 @@ function Supervised(){
     const { authStatus } = useAuthenticator(context => [context.authStatus]);
     return(
 <>
+<br></br>
       {authStatus !== 'authenticated' ? 
         <div>
             <p>Place Non Auth stuff Here</p>

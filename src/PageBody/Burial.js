@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "./BurialStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
-import axios from 'axios';
+import axios from "axios";
 
 function convertAge(age) {
   const ages = {
@@ -68,7 +68,12 @@ function convertWrapping(wrap) {
 //const mainUrl = "https://localhost:7127/api";
 const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api";
 function Burial() {
-  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const isAuth = localStorage.getItem("role")
+    ? localStorage.getItem("role").toLocaleLowerCase() === "admin"
+      ? true
+      : false
+    : false;
+
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [obj, setObj] = useState([]);
@@ -98,12 +103,12 @@ function Burial() {
   }, [page, ages, sex, wrappings, hairColors, areas, depth, length, bNum]);
   //
 
-  console.log(obj);
-  function axiosDelete(x)
-  {
+  function axiosDelete(x) {
     const url = `${mainUrl}/Crud/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`;
-    axios.delete(url).then(res => {console.log(res); window.location.reload();});
-    
+    axios.delete(url).then((res) => {
+      console.log(res);
+      window.location.reload();
+    });
   }
   return (
     <>
@@ -123,17 +128,16 @@ function Burial() {
         >
           Reset Filters
         </button>
-        <a 
+        <a
           href="/newentry"
           class="pagination-button"
-          style={{textDecoration: 'none'}}
-          >
-            
-            Add Record
+          style={{ textDecoration: "none" }}
+        >
+          Add Record
         </a>
       </div>
-      
-      {authStatus !== "authenticated" ? (
+
+      {isAuth ? (
         <center>
           <div>
             <br />
@@ -292,8 +296,9 @@ function Burial() {
                         <tr>
                           <td>
                             <a
-                              style={{textDecoration: 'none'}}
+                              style={{ textDecoration: "none" }}
                               href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
+                              className="btn btn-dark"
                             >
                               {x.burialnumber}
                             </a>
@@ -307,7 +312,7 @@ function Burial() {
                           <td>{x.length}</td>
                           <td>
                             <a
-                              style={{textDecoration: 'none'}}
+                              style={{ textDecoration: "none" }}
                               href={`/edit/${
                                 x.burialnumber ? x.burialnumber : ""
                               }/${x.area ? x.area : ""}/${
@@ -317,14 +322,22 @@ function Burial() {
                               }/${
                                 x.squarenorthsouth ? x.squarenorthsouth : ""
                               }`}
+                              className="btn btn-dark"
                             >
                               Edit
                             </a>
                           </td>
                           <td>
-                          <a style={{textDecoration: 'none'}} href="#" onClick={() => {axiosDelete(x);}}>Delete</a>
+                            <a
+                              style={{ textDecoration: "none" }}
+                              href="#"
+                              onClick={() => {
+                                axiosDelete(x);
+                              }}
+                            >
+                              Delete
+                            </a>
                           </td>
-                         
                         </tr>
                       );
                     })
@@ -527,7 +540,6 @@ function Burial() {
                         {length ? "Unsort" : "Sort"}
                       </button>
                     </th>
-                    
                   </tr>
                 </thead>
                 <tbody>
@@ -537,7 +549,7 @@ function Burial() {
                         <tr>
                           <td>
                             <a
-                              style={{textDecoration: 'none'}}
+                              style={{ textDecoration: "none" }}
                               href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
                             >
                               {x.burialnumber}

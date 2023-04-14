@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "./BurialStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
-import axios from 'axios';
+import axios from "axios";
 
 function convertAge(age) {
   const ages = {
@@ -137,6 +137,7 @@ function Burial() {
 
   //
 
+
   async function axiosDelete(x) {
     const url = `${mainUrl}/Crud/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`;
     const confirmDelete = window.confirm(`Are you sure you want to delete this record ${x.burialnumber}?`);
@@ -167,18 +168,16 @@ function Burial() {
         >
           Reset Filters
         </button>
-        <a 
+       {isAuth ? <a
           href="/newentry"
           class="pagination-button"
-          style={{textDecoration: 'none'}}
-          >
-            
-            Add Record
-        </a>
+          style={{ textDecoration: "none" }}
+        >
+          Add Record
+        </a> : <></>}
       </div>
 
       {isAuth ? (
-
         <center>
           <div>
             <br />
@@ -331,14 +330,15 @@ function Burial() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data !== [] ? (
+                  {data ? (
                     data.map((x) => {
                       return (
                         <tr>
                           <td>
                             <a
-                              style={{textDecoration: 'none'}}
+                              style={{ textDecoration: "none" }}
                               href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
+                              
                             >
                               {x.burialnumber}
                             </a>
@@ -352,24 +352,24 @@ function Burial() {
                           <td>{x.length}</td>
                           <td>
                             <a
-                              style={{textDecoration: 'none'}}
-                              href={`/edit/${
-                                x.burialnumber ? x.burialnumber : ""
-                              }/${x.area ? x.area : ""}/${
-                                x.eastwest ? x.eastwest : ""
-                              }/${x.squareeastwest ? x.squareeastwest : ""}/${
-                                x.northsouth ? x.northsouth : ""
-                              }/${
-                                x.squarenorthsouth ? x.squarenorthsouth : ""
-                              }`}
+                              style={{ textDecoration: "none" }}
+                              href={`/edit/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
+                              
                             >
                               Edit
                             </a>
                           </td>
                           <td>
-                          <a style={{textDecoration: 'none'}} href="#" onClick={() => {axiosDelete(x);}}>Delete</a>
+                            <a
+                              style={{ textDecoration: "none" }}
+                              href="#"
+                              onClick={() => {
+                                axiosDelete(x);
+                              }}
+                            >
+                              Delete
+                            </a>
                           </td>
-                         
                         </tr>
                       );
                     })
@@ -383,7 +383,7 @@ function Burial() {
           <div>
             {data ? (
               <div style={{ display: "flex", justifyContent: "center" }}>
-                {page > obj.totalPages ? (
+                {page > 1 ? (
                   <button
                     className="pagination-button"
                     onClick={() => {
@@ -572,17 +572,16 @@ function Burial() {
                         {length ? "Unsort" : "Sort"}
                       </button>
                     </th>
-                    
                   </tr>
                 </thead>
                 <tbody>
-                  {data !== [] ? (
+                  {data ? (
                     data.map((x) => {
                       return (
                         <tr>
                           <td>
                             <a
-                              style={{textDecoration: 'none'}}
+                              style={{ textDecoration: "none" }}
                               href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
                             >
                               {x.burialnumber}
@@ -608,7 +607,7 @@ function Burial() {
           <div>
             {data ? (
               <div style={{ display: "flex", justifyContent: "center" }}>
-                {page > obj.totalPages ? (
+                {page > 1 ? (
                   <button
                     className="pagination-button"
                     onClick={() => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { useParams, ReDirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function EditEntry() {
   const url = "https://de8jo1lugqs3e.cloudfront.net/api/Crud/";
@@ -136,7 +136,10 @@ function EditEntry() {
         `${url}${burialNum}/${area}/${eastWest}/${sqew}/${northSouth}/${sqns}`,
         wrappingBody
       )
-      .then((res) => console.log(res));
+      .then((res) => {
+        console.log(res);
+        window.location.href = "/burial";
+      });
 
     setDisplay(!display);
 
@@ -755,7 +758,9 @@ function EditEntry() {
                   type="button"
                   class="btn btn-primary"
                   onClick={() => {
-                    axiosRequest();
+                    {
+                      axiosRequest();
+                    }
                   }}
                 >
                   Submit

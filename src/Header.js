@@ -8,7 +8,7 @@ function Header() {
   function SignOut(){
     localStorage.clear();
 
-    window.location.reload();
+    window.location.href = '/';
 
   }
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
@@ -65,7 +65,7 @@ function Header() {
             ) : (                
             <li className="nav-item">
             <a href="/login" className="nav-link text-dark border">
-              login
+              Login
             </a>
           </li>)
             }

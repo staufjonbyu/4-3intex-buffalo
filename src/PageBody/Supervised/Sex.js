@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
 function Sex() {
+  //const url = "https://localhost:7087/sex";
   const url = "https://de8jo1lugqs3e.cloudfront.net/sex";
 
   const [depth, setDepth] = useState(0);

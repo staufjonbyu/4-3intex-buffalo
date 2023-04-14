@@ -6,7 +6,7 @@ import "./App.css";
 function Footer() {
   return (
     <div className="container">
-      <footer className="py-2 my-2" >
+      <footer className="py-2 my-2 sticky-footer">
         <a href="/privacy">Our Privacy Policy</a>
         <p className="text-center text-muted">&copy; 2023 Buffalo Website</p>
       </footer>

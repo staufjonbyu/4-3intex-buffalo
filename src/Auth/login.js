@@ -9,7 +9,9 @@ const Login = () => {
 
 
 
+
   const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api/Authenticate";
+
 
 
   const navigate = useNavigate();
@@ -49,21 +51,18 @@ const Login = () => {
     //   setRes(response);
     // });
     const response = await axios.post(mainUrl, body);
-    
+
     console.log(response.data);
     localStorage.setItem("user", response.data.email);
     localStorage.setItem("name", response.data.firstname);
     localStorage.setItem("code", response.data.code);
     localStorage.setItem("message", response.data.message);
-    localStorage.setItem("role", response.data.role)
-    
-    if (response.data.message === 'Authenticated!'){
+    localStorage.setItem("role", response.data.role);
+
+    if (response.data.message === "Authenticated!") {
       setSuccess(true);
       window.location.href = "/";
       // window.location.reload();
-      
-
-      
     }
   };
 

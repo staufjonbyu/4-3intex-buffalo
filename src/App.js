@@ -73,6 +73,14 @@ function App({ signOut, user }) {
                       path="/burial/:burialNum/:area/:eastWest/:sqew/:northSouth/:sqns"
                       element={<BurialInfo />}
                     />
+                    <Route
+                      path="/edit/:burialNum/:area/:eastWest/:sqew/:northSouth/:sqns"
+                      element={<EditEntry />}
+                    />
+                    <Route
+                      path="/newentry"
+                      element={<NewEntry />}
+                    />
                     {/* string burialNum, string area, string eastWest, string sqew, string northSouth, string sqns */}
                     <Route
                       path="/supervised"

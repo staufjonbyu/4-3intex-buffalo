@@ -7,6 +7,8 @@ import digsite from "./images/DigSite.jpg";
 import sand from "./images/SiwaSandDunes.jpg";
 import tombs from "./images/tombs.jpg";
 import map from "./images/map.jpg";
+import depthchart from "./images/depthchart.jpg";
+import textile from "./images/textile.jpg";
 
 function Home() {
   return (
@@ -23,7 +25,7 @@ function Home() {
                 If you want to view information about specific mummies and other
                 artifacts, check out the{" "}
                 <a href="/burial" className="link">
-                  Burial
+                  Burials
                 </a>
                 &nbsp;tab (if you are an authorized administrator,{" "}
                 <a href="/login" className="link">
@@ -55,7 +57,7 @@ function Home() {
             moisture as well as favorable atmospheric conditions at the burial
             spot.
           </p>
-          <div>
+          <div className="carousel-wrapper">
             <Carousel
               className="carousel"
               style={{
@@ -67,27 +69,40 @@ function Home() {
               <div key="digsite">
                 <img src={digsite} alt="digsite" />
               </div>
-              <div key="image2">
-                <img src={sand} alt="image2" />
+              <div key="tombs">
+                <img src={tombs} alt="tombs" />
               </div>
-              <div key="image3">
-                <img src={tombs} alt="image3" />
+              <div key="depthchart">
+                <img src={depthchart} alt="depthchart" />
+              </div>
+              <div key="textile">
+                <img src={textile} alt="textile" />
               </div>
             </Carousel>
           </div>
         </section>
         <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <h2>Location of Fag el-Gamous</h2>
-        <div style={{ display: "flex", gap: "20px" }}>
+        <br></br>
+        <div
+          style={{
+            display: "flex",
+            gap: "20px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <img src={map} alt="image3" />
-          <div
-            className="mapview"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          <div className="mapview">
             <MapView
               style={{ height: "300px", width: "400px" }}
               initialViewState={{

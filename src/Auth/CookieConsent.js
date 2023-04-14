@@ -24,9 +24,9 @@ function CookieBanner() {
           onAccept={(acceptedByScrolling) => {
             if (acceptedByScrolling) {
               // triggered if user scrolls past threshold
-              alert("Accept was triggered by user scrolling");
+              // alert("Accept was triggered by user scrolling");
             } else {
-              alert("Accept was triggered by clicking the Accept button");
+              // alert("Accept was triggered by clicking the Accept button");
             }
             localStorage.setItem("cookieAccepted", true);
             setCookieAccepted(true);

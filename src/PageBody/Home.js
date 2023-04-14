@@ -102,7 +102,7 @@ function Home() {
           }}
         >
           <img src={map} alt="image3" />
-          <div className="mapview">
+          {/* <div className="mapview">
             <MapView
               style={{ height: "300px", width: "400px" }}
               initialViewState={{
@@ -111,7 +111,7 @@ function Home() {
                 zoom: 9,
               }}
             />
-          </div>
+          </div> */}
         </div>
       </main>
     </div>

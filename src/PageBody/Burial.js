@@ -128,13 +128,13 @@ function Burial() {
         >
           Reset Filters
         </button>
-        <a
+       {isAuth ? <a
           href="/newentry"
           class="pagination-button"
           style={{ textDecoration: "none" }}
         >
           Add Record
-        </a>
+        </a> : <></>}
       </div>
 
       {isAuth ? (

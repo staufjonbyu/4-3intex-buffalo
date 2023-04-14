@@ -65,7 +65,7 @@ function Header() {
             ) : (                
             <li className="nav-item">
             <a href="/login" className="nav-link text-dark border">
-              login
+              Login
             </a>
           </li>)
             }

@@ -2,11 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-let id = 30;
-
-function incrementId() {
-  id += 1;
-}
 
 function NewEntry() {
   const url = "https://de8jo1lugqs3e.cloudfront.net/api/Crud";
@@ -53,7 +48,7 @@ function NewEntry() {
 
   function axiosRequest() {
     const wrappingBody = {
-      id: id,
+      id: 0,
       squarenorthsouth: squarenorthsouth,
       headdirection: headdirection,
       sex: sex,
@@ -90,7 +85,7 @@ function NewEntry() {
       shaftnumber: shaftnumber,
     };
 
-    axios.post(url, wrappingBody).then((res) => console.log(res));
+    axios.post(url, wrappingBody).then((res) => {console.log(res); window.location.href = '/burial'});
 
     setDisplay(!display);
 
@@ -98,8 +93,6 @@ function NewEntry() {
 
     // //axios.post(`${url}addticket`, obj).then(() => console.log('Ticket added'));
   }
-
-  console.log(id);
   console.log(shaftnumber);
   return (
     <>
@@ -676,7 +669,6 @@ function NewEntry() {
                   class="btn btn-primary"
                   onClick={() => {
                     axiosRequest();
-                    incrementId();
                   }}
                 >
                   Submit

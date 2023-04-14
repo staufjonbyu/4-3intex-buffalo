@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "./BurialStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
+import axios from 'axios';
 
 function convertAge(age) {
   const ages = {
@@ -17,7 +19,7 @@ function convertAge(age) {
     return ages[age];
   }
 
-  return "";
+  return age;
 }
 
 function convertSex(sex) {
@@ -30,7 +32,7 @@ function convertSex(sex) {
   if (sex in sexes) {
     return sexes[sex];
   }
-  return "";
+  return sex;
 }
 
 function convertHair(hair) {
@@ -46,7 +48,7 @@ function convertHair(hair) {
   if (hair in haircolors) {
     return haircolors[hair];
   }
-  return "";
+  return hair;
 }
 
 function convertWrapping(wrap) {
@@ -60,7 +62,7 @@ function convertWrapping(wrap) {
   if (wrap in wrappings) {
     return wrappings[wrap];
   }
-  return "";
+  return wrap;
 }
 
 //const mainUrl = "https://localhost:7127/api";
@@ -79,6 +81,7 @@ function Burial() {
   const [depth, setDepth] = useState(false);
   const [length, setLength] = useState(false);
   const [bNum, setBNum] = useState(false);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     async function getData() {
@@ -95,6 +98,13 @@ function Burial() {
     getData();
   }, [page, ages, sex, wrappings, hairColors, areas, depth, length, bNum]);
   //
+
+  function axiosDelete(x)
+  {
+    const url = `${mainUrl}/Crud/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`;
+    axios.delete(url).then(res => {console.log(res); window.location.reload();});
+    
+  }
   return (
     <>
       <div>
@@ -113,7 +123,16 @@ function Burial() {
         >
           Reset Filters
         </button>
+        <a 
+          href="/newentry"
+          class="pagination-button"
+          style={{textDecoration: 'none'}}
+          >
+            
+            Add Record
+        </a>
       </div>
+      
       {authStatus !== "authenticated" ? (
         <center>
           <div>
@@ -299,6 +318,7 @@ function Burial() {
                       </button>
                     </th>
                     <th>Edit</th>
+                    <th>Delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -308,6 +328,7 @@ function Burial() {
                         <tr>
                           <td>
                             <a
+                              style={{textDecoration: 'none'}}
                               href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
                             >
                               {x.burialnumber}
@@ -322,6 +343,7 @@ function Burial() {
                           <td>{x.length}</td>
                           <td>
                             <a
+                              style={{textDecoration: 'none'}}
                               href={`/edit/${
                                 x.burialnumber ? x.burialnumber : ""
                               }/${x.area ? x.area : ""}/${
@@ -335,6 +357,10 @@ function Burial() {
                               Edit
                             </a>
                           </td>
+                          <td>
+                          <a style={{textDecoration: 'none'}} href="#" onClick={() => {axiosDelete(x);}}>Delete</a>
+                          </td>
+                         
                         </tr>
                       );
                     })
@@ -346,9 +372,9 @@ function Burial() {
             </div>
           </div>
           <div>
-            {obj !== {} && data !== [] ? (
+            {data ? (
               <div style={{ display: "flex", justifyContent: "center" }}>
-                {obj.previousPage !== "NaN" ? (
+                {page > obj.totalPages ? (
                   <button
                     className="pagination-button"
                     onClick={() => {
@@ -362,7 +388,7 @@ function Burial() {
                   <></>
                 )}
 
-                {obj.nextPage !== "NaN" ? (
+                {page < obj.totalPages ? (
                   <button
                     className="pagination-button"
                     onClick={() => {

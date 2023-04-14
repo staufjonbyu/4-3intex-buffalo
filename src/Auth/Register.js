@@ -109,84 +109,205 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
         </section>
       ) : (
         <section>
-          {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
-          <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-              <div class="col-lg-8 col-xl-6">
-                <div class="card rounded-3">
-                  <div class="card-body p-4 p-md-5">
-                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
-                      Create New User
-                    </h3>
-                    <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
-                      <div class="col-6">
-                        <div class="form-outline">
-                          <label class="form-label" htmlFor="firstname">
-                            First Name:
-                            {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
+          <form onSubmit={handleSubmit}>
+            {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="">
+                  <div class="card rounded-3">
+                    <div class="card-body p-4 p-md-5">
+                      <h3 class="mb-2 pb-2 pb-md-0 mb-md-5 px-md-2">
+                        Create New User
+                      </h3>
+                      <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
+                        <div class="col-6">
+                          <div class="form-outline">
+                            <label class="form-label" htmlFor="firstname">
+                              First Name:
+                              {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
                                             <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
-                          </label>
-                          <input
-                            type="text"
-                            id="firstName"
-                            ref={firstNameRef}
-                            autoComplete="off"
-                            onChange={(e) => setFirstName(e.target.value)}
-                            value={firstName}
-                            className="form-control"
-                          />
+                            </label>
+                            <input
+                              type="text"
+                              id="firstName"
+                              ref={firstNameRef}
+                              autoComplete="off"
+                              onChange={(e) => setFirstName(e.target.value)}
+                              value={firstName}
+                              className="form-control"
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="form-outline">
-                          <label class="form-label" htmlFor="lastname">
-                            Last Name:
-                            {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
+                        <div class="col-6">
+                          <div class="form-outline">
+                            <label class="form-label" htmlFor="lastname">
+                              Last Name:
+                              {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
                                             <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
-                          </label>
-                          <input
-                            type="lastname"
-                            id="lastname"
-                            ref={lastNameRef}
-                            autoComplete="off"
-                            onChange={(e) => setLastName(e.target.value)}
-                            value={lastName}
-                            className="form-control"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
-                      <div class="col-6">
-                        <div class="form-outline">
-                          <label class="form-label" htmlFor="email">
-                            Email:
-                            {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
-                          </label>
-                          <input
-                            type="email"
-                            id="user"
-                            ref={userRef}
-                            autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user} // set this to the value of the user's email address
-                            required
-                            aria-invalid={validName ? "false" : "true"}
-                            aria-describedby="uidnote"
-                            class="form-control"
-                            onFocus={() => setUserFocus(true)}
-                            onBlur={() => setUserFocus(false)}
-                          />
+                            </label>
+                            <input
+                              type="lastname"
+                              id="lastname"
+                              ref={lastNameRef}
+                              autoComplete="off"
+                              onChange={(e) => setLastName(e.target.value)}
+                              value={lastName}
+                              className="form-control"
+                            />
+                          </div>
                         </div>
                       </div>
                       <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
                         <div class="col-6">
                           <div class="form-outline">
+                            <label class="form-label" htmlFor="email">
+                              Email:
+                              {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
+                                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
+                            </label>
+                            <input
+                              type="email"
+                              id="user"
+                              ref={userRef}
+                              autoComplete="off"
+                              onChange={(e) => setUser(e.target.value)}
+                              value={user} // set this to the value of the user's email address
+                              required
+                              aria-invalid={validName ? "false" : "true"}
+                              aria-describedby="uidnote"
+                              class="form-control"
+                              onFocus={() => setUserFocus(true)}
+                              onBlur={() => setUserFocus(false)}
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <div class="form-outline">
                             <label class="form-label" htmlFor="role">
                               Role:
                             </label>
+                            <select
+                              id="role"
+                              ref={roleRef}
+                              autoComplete="off"
+                              onChange={(e) => setRoleName(e.target.value)}
+                              class="form-select"
+                            >
+                              <option value="">Select role</option>
+                              <option value="Admin">Admin</option>
+                              <option value="Researcher">Researcher</option>
+                            </select>
                           </div>
+                        </div>
+                        <div class="row pb-3 pt-3">
+                          <div class="col-3 "></div>
+                          <div class="col-6 pb-3 pt-3 ">
+                            <label htmlFor="password" class="form-label">
+                              Password:
+                              {/* <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} /> */}
+                            </label>
+                            <input
+                              type="password"
+                              id="password"
+                              onChange={(e) => setPwd(e.target.value)}
+                              value={pwd}
+                              required
+                              aria-invalid={validPwd ? "false" : "true"}
+                              aria-describedby="pwdnote"
+                              onFocus={() => setPwdFocus(true)}
+                              onBlur={() => setPwdFocus(false)}
+                              className="form-control"
+                            />
+                          </div>
+                          <div class="col-3"></div>
+                        </div>
+                        <div class="row mb-4 pb-2 pb-md-0 mb-md-5 justify-content-center align-items-center">
+                          <div className="col-8">
+                            <p
+                              id="pwdnote"
+                              className={
+                                pwdFocus && !validPwd
+                                  ? "instructions"
+                                  : "offscreen"
+                              }
+                            >
+                              <FontAwesomeIcon icon={faInfoCircle} />
+                              <ul>
+                                <li>Note must be 12 to 24 characters.</li>
+                                <li>
+                                  Must include uppercase and lowercase letters,
+                                  a number and a special character.
+                                </li>
+                                <li>
+                                  {" "}
+                                  Allowed special characters:{" "}
+                                  <span aria-label="exclamation mark">
+                                    !
+                                  </span>{" "}
+                                  <span aria-label="at symbol">@</span>{" "}
+                                  <span aria-label="hashtag">#</span>{" "}
+                                  <span aria-label="dollar sign">$</span>{" "}
+                                  <span aria-label="percent">%</span>
+                                </li>
+                              </ul>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <div class="col-3"></div>
+                          <div class="col-6">
+                            <label htmlFor="confirm_pwd" class="form-label">
+                              Confirm Password:
+                              {/* <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} /> */}
+                            </label>
+                            <input
+                              type="password"
+                              id="confirm_pwd"
+                              onChange={(e) => setMatchPwd(e.target.value)}
+                              value={matchPwd}
+                              required
+                              aria-invalid={validMatch ? "false" : "true"}
+                              aria-describedby="confirmnote"
+                              onFocus={() => setMatchFocus(true)}
+                              onBlur={() => setMatchFocus(false)}
+                              className="form-control"
+                            />
+                          </div>
+                          <div class="col-3"></div>
+                        </div>
+                        <div class="row mb-4 pb-2 pb-md-0 mb-md-5 justify-content-center align-items-center">
+                          <div className="col-8">
+                            <p
+                              id="confirmnote"
+                              className={
+                                matchFocus && !validMatch
+                                  ? "instructions"
+                                  : "offscreen"
+                              }
+                            >
+                              <FontAwesomeIcon icon={faInfoCircle} />
+                              Must match the first password input field.
+                            </p>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-3"></div>
+                          <div className="col-6">
+                            <button
+                              disabled={
+                                !validName || !validPwd || !validMatch
+                                  ? true
+                                  : false
+                              }
+                              className="btn btn-primary"
+                            >
+                              Create User
+                            </button>
+                          </div>
+                          <div className="col-3"></div>
                         </div>
                       </div>
                     </div>
@@ -194,105 +315,7 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
                 </div>
               </div>
             </div>
-          </div>
-          <form onSubmit={handleSubmit}>
-            {/* <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
-                            <FontAwesomeIcon icon={faInfoCircle} />
-                            Enter the email <br />
-                        </p> */}
-
-            <label htmlFor="firstname">
-              Role:
-              {/* <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} /> */}
-            </label>
-            <select
-              id="role"
-              ref={roleRef}
-              autoComplete="off"
-              onChange={(e) => setRoleName(e.target.value)}
-            >
-              <option value="">Select role</option>
-              <option value="Admin">Admin</option>
-              <option value="Researcher">Researcher</option>
-            </select>
-
-            <p></p>
-
-            <label htmlFor="password">
-              Password:
-              {/* <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} /> */}
-            </label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
-              required
-              aria-invalid={validPwd ? "false" : "true"}
-              aria-describedby="pwdnote"
-              onFocus={() => setPwdFocus(true)}
-              onBlur={() => setPwdFocus(false)}
-            />
-            <p
-              id="pwdnote"
-              className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
-            >
-              <FontAwesomeIcon icon={faInfoCircle} />
-              Note must be 12 to 24 characters.
-              <br />
-              Must include uppercase and lowercase letters, a number and a
-              special character.
-              <br />
-              Allowed special characters:{" "}
-              <span aria-label="exclamation mark">!</span>{" "}
-              <span aria-label="at symbol">@</span>{" "}
-              <span aria-label="hashtag">#</span>{" "}
-              <span aria-label="dollar sign">$</span>{" "}
-              <span aria-label="percent">%</span>
-            </p>
-
-            <label htmlFor="confirm_pwd">
-              Confirm Password:
-              {/* <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} /> */}
-            </label>
-            <input
-              type="password"
-              id="confirm_pwd"
-              onChange={(e) => setMatchPwd(e.target.value)}
-              value={matchPwd}
-              required
-              aria-invalid={validMatch ? "false" : "true"}
-              aria-describedby="confirmnote"
-              onFocus={() => setMatchFocus(true)}
-              onBlur={() => setMatchFocus(false)}
-            />
-            <p
-              id="confirmnote"
-              className={
-                matchFocus && !validMatch ? "instructions" : "offscreen"
-              }
-            >
-              <FontAwesomeIcon icon={faInfoCircle} />
-              Must match the first password input field.
-            </p>
-
-            <button
-              disabled={!validName || !validPwd || !validMatch ? true : false}
-            >
-              Create User
-            </button>
           </form>
-          <p>
-            Change Mind?
-            <br />
-            <span className="line">
-              {/*put router link here*/}
-              <a href="/admin">Admin Menu</a>
-            </span>
-          </p>
         </section>
       )}
     </>

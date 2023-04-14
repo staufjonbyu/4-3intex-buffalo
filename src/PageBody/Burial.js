@@ -309,6 +309,7 @@ function Burial() {
                           <td>
                             <a
                               href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
+                              className="btn btn-dark"
                             >
                               {x.burialnumber}
                             </a>
@@ -331,6 +332,7 @@ function Burial() {
                               }/${
                                 x.squarenorthsouth ? x.squarenorthsouth : ""
                               }`}
+                              className="btn btn-dark"
                             >
                               Edit
                             </a>

@@ -290,7 +290,7 @@ function Burial() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data !== [] ? (
+                  {data ? (
                     data.map((x) => {
                       return (
                         <tr>
@@ -351,7 +351,7 @@ function Burial() {
           <div>
             {data ? (
               <div style={{ display: "flex", justifyContent: "center" }}>
-                {page > obj.totalPages ? (
+                {page > 1 ? (
                   <button
                     className="pagination-button"
                     onClick={() => {
@@ -543,7 +543,7 @@ function Burial() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data !== [] ? (
+                  {data ? (
                     data.map((x) => {
                       return (
                         <tr>
@@ -575,7 +575,7 @@ function Burial() {
           <div>
             {data ? (
               <div style={{ display: "flex", justifyContent: "center" }}>
-                {page > obj.totalPages ? (
+                {page > 1 ? (
                   <button
                     className="pagination-button"
                     onClick={() => {

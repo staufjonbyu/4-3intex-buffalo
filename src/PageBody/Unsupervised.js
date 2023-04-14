@@ -12,7 +12,7 @@ function Unsupervised() {
     <>
       {authStatus !== "authenticated" ? (
         <Tab.Container id="tabs" defaultActiveKey="first">
-          <Row className="m-5">
+          <Row className="mt-5 mt-5">
             <Col md={9}>
               <Tab.Content>
                 <Tab.Pane eventKey="first">

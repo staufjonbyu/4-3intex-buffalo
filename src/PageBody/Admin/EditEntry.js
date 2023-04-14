@@ -131,12 +131,12 @@ function EditEntry() {
       shaftnumber: shaftnumber,
     };
 
-    axios
-      .put(
-        `${url}${burialNum}/${area}/${eastWest}/${sqew}/${northSouth}/${sqns}`,
-        wrappingBody
-      )
-      .then((res) => console.log(res));
+    // axios
+    //   .put(
+    //     `${url}${burialNum}/${area}/${eastWest}/${sqew}/${northSouth}/${sqns}`,
+    //     wrappingBody
+    //   )
+    //   .then((res) => console.log(res));
 
     setDisplay(!display);
 

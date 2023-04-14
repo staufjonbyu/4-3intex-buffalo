@@ -67,6 +67,39 @@ function convertWrapping(wrap) {
 
 //const mainUrl = "https://localhost:7127/api";
 const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api";
+function myConfirm(message) {
+  const confirmBox = document.createElement('div');
+  confirmBox.innerHTML = `
+    <div>
+      <div>${message}</div>
+      <button id="confirmYes">Yes</button>
+      <button id="confirmNo">No</button>
+    </div>
+  `;
+  confirmBox.style.position = 'fixed';
+  confirmBox.style.top = '50%';
+  confirmBox.style.left = '50%';
+  confirmBox.style.transform = 'translate(-50%, -50%)';
+  confirmBox.style.background = 'white';
+  confirmBox.style.border = '1px solid black';
+  confirmBox.style.padding = '20px';
+  confirmBox.style.zIndex = '9999';
+
+  const confirmYesButton = confirmBox.querySelector('#confirmYes');
+  const confirmNoButton = confirmBox.querySelector('#confirmNo');
+
+  return new Promise((resolve, reject) => {
+    confirmYesButton.onclick = () => {
+      confirmBox.remove();
+      resolve(true);
+    };
+    confirmNoButton.onclick = () => {
+      confirmBox.remove();
+      resolve(false);
+    };
+    document.body.appendChild(confirmBox);
+  });
+}
 function Burial() {
   const isAuth = localStorage.getItem("role")
     ? localStorage.getItem("role").toLocaleLowerCase() === "admin"
@@ -101,14 +134,21 @@ function Burial() {
     }
     getData();
   }, [page, ages, sex, wrappings, hairColors, areas, depth, length, bNum]);
+
   //
 
-  function axiosDelete(x)
-  {
+  async function axiosDelete(x) {
     const url = `${mainUrl}/Crud/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`;
-    axios.delete(url).then(res => {console.log(res); window.location.reload();});
-    
+    const confirmDelete = window.confirm(`Are you sure you want to delete this record ${x.burialnumber}?`);
+    if (!confirmDelete) {
+      return;
+    }
+    axios.delete(url).then(res => {
+      console.log(res);
+      window.location.reload();
+    });
   }
+  
   return (
     <>
       <div>

@@ -23,18 +23,60 @@ function Admin({ switchToEditUserTab }) {
     switchToEditUserTab();
   }
 
+  function myConfirm(message) {
+    const confirmBox = document.createElement('div');
+    confirmBox.innerHTML = `
+      <div>
+        <div>${message}</div>
+        <button id="confirmYes">Yes</button>
+        <button id="confirmNo">No</button>
+      </div>
+    `;
+    confirmBox.style.position = 'fixed';
+    confirmBox.style.top = '50%';
+    confirmBox.style.left = '50%';
+    confirmBox.style.transform = 'translate(-50%, -50%)';
+    confirmBox.style.background = 'white';
+    confirmBox.style.border = '1px solid black';
+    confirmBox.style.padding = '20px';
+    confirmBox.style.zIndex = '9999';
+  
+    const confirmYesButton = confirmBox.querySelector('#confirmYes');
+    const confirmNoButton = confirmBox.querySelector('#confirmNo');
+  
+    return new Promise((resolve, reject) => {
+      confirmYesButton.onclick = () => {
+        confirmBox.remove();
+        resolve(true);
+      };
+      confirmNoButton.onclick = () => {
+        confirmBox.remove();
+        resolve(false);
+      };
+      document.body.appendChild(confirmBox);
+    });
+  }
+  
 
-  function deleteUser(email) {
-    axios
-      .delete(`${userUrl}/${email}`)
-      .then((res) => {
-        console.log(res.data);
-        window.location.reload();
-        // perform any necessary UI updates
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+
+  async function deleteUser(email) {
+    
+    const confirmDelete = await myConfirm(`Are you sure you want to delete the user with email ${email}?`);
+    if (!confirmDelete) {
+      return;
+    } else {
+      axios
+        .delete(`${userUrl}/${email}`)
+        .then((res) => {
+          console.log(res.data);
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+    }
+  
   }
 
   useEffect(() => {

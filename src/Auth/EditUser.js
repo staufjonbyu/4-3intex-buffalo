@@ -10,6 +10,7 @@ import axios from "axios";
 
 
 
+
 const EditUser = () => {
 
   const { firstname, lastname, email, role } = useParams();
@@ -20,6 +21,7 @@ const EditUser = () => {
   const [lastName, setLastName] = useState(lastname);
   const [roleName, setRoleName] = useState(role);
   const [user, setUser] = useState(email);
+
 
   console.log(firstName);
   console.log(lastName);
@@ -40,39 +42,45 @@ const EditUser = () => {
   return (
     <>
         <section>
-        {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
-        <div class="container py-5">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="card rounded-3">
-                <div class="card-body p-4">
-                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Edit User</h3>
-                  <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
-                    <div class="col-md-6 mb-3">
-                      <div class="form-outline">
-                        <label class="form-label" htmlFor="firstName">First Name:</label>
-                        <input
-                          type="text"
-                          id="firstName"
-                          autoComplete="off"
-                          onChange={(e) => setFirstName(e.target.value)}
-                          value={firstName}
-                          className="form-control"
-                        />
+          {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
+          <div class="container py-5">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="card rounded-3">
+                  <div class="card-body p-4">
+                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Edit User</h3>
+                    <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
+                      <div class="col-md-6 mb-3">
+                        <div class="form-outline">
+                          <label class="form-label" htmlFor="firstName">
+                            First Name:
+                          </label>
+                          <input
+                            type="text"
+                            id="firstName"
+                            autoComplete="off"
+                            onChange={(e) => setFirstName(e.target.value)}
+                            value={firstName}
+                            className="form-control"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <div class="form-outline">
-                        <label class="form-label" htmlFor="lastName">Last Name:</label>
-                        <input
-                          type="text"
-                          id="lastName"
-                          autoComplete="off"
-                          onChange={(e) => setLastName(e.target.value)}
-                          value={lastName}
-                          className="form-control"
-                        />
+                      <div class="col-md-6 mb-3">
+                        <div class="form-outline">
+                          <label class="form-label" htmlFor="lastName">
+                            Last Name:
+                          </label>
+                          <input
+                            type="text"
+                            id="lastName"
+                            autoComplete="off"
+                            onChange={(e) => setLastName(e.target.value)}
+                            value={lastName}
+                            className="form-control"
+                          />
+                        </div>
                       </div>
+
                     </div>
                     <div class="col-md-12 mb-3">
                       <div class="form-outline">
@@ -88,17 +96,21 @@ const EditUser = () => {
                           aria-describedby="uidnote"
                           class="form-control"
                         />
+
                       </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <div class="form-outline">
-                        <label class="form-label" htmlFor="role">Role:</label>
-                        <select
-                          id="role"
-                          autoComplete="off"
-                          onChange={(e) => setRoleName(e.target.value)}
-                          className="form-control"
-                        >
+                      <div class="col-md-6 mb-3">
+                        <div class="form-outline">
+                          <label class="form-label" htmlFor="role">
+                            Role:
+                          </label>
+                          <select
+                            id="role"
+                            autoComplete="off"
+                            onChange={(e) => setRoleName(e.target.value)}
+                            className="form-control"
+                          >
+                            
+
                           <option value="">Select role</option>
                           <option selected={roleName === 'Admin' ? true : false}value="Admin">Admin</option>
                           <option selected={roleName === 'Researcher' ? true : false}value="Researcher">Researcher</option>
@@ -114,6 +126,8 @@ const EditUser = () => {
                         Submit Changes
                       </button>
                     </div>
+
+                       
                   </div>
                 </div>
               </div>
@@ -124,6 +138,6 @@ const EditUser = () => {
       
     </>
   );
-}
+};
 
 export default EditUser;

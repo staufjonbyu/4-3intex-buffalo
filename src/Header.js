@@ -12,7 +12,7 @@ function Header() {
   }
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
   const isAuth = localStorage.getItem("role")
-    ? localStorage.getItem("role").toLocaleLowerCase() === "admin"
+    ? localStorage.getItem("role").toLocaleLowerCase() === "admin" || localStorage.getItem('role').toLowerCase() === 'researcher'
       ? true
       : false
     : false;
@@ -45,11 +45,11 @@ function Header() {
             </li>
             {isAuth ? (
               <>
-                <li className="nav-item">
+                {localStorage.getItem('role').toLowerCase() === 'admin' ? <li className="nav-item">
                   <a href="/admin" className="nav-link text-dark border">
                     Admin
                   </a>
-                </li>
+                </li> : <></>}
                 <li className="nav-item">
                   <button
                     className="nav-link btn btn-link text-dark border"

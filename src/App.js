@@ -1,15 +1,11 @@
-import logo from "./logo.svg";
-//import "./Custom.css";
-//import "./App.css";
-
-// pages
 import Home from "./PageBody/Home";
 import Burial from "./PageBody/Burial";
 import BurialInfo from "./PageBody/BurialInfo";
-import Admin from "./PageBody/Admin";
+import AdminPortal from "./Auth/AdminPortal";
 import Supervised from "./PageBody/Supervised";
 import Unsupervised from "./PageBody/Unsupervised";
-import Login from "./PageBody/Login";
+import Login from "./Auth/login";
+import Register from "./Auth/Register";
 import Header from "./Header";
 import Footer from "./Footer";
 import NewEntry from "./PageBody/Admin/NewEntry";
@@ -19,6 +15,7 @@ import EditEntry from "./PageBody/Admin/EditEntry";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
+// import Login from "./Auth/login";
 
 // import { Amplify } from 'aws-amplify';
 
@@ -62,6 +59,7 @@ function App({ signOut, user }) {
                     path="/unsupervised"
                     element={<Unsupervised></Unsupervised>}
                   />
+                  <Route path="/create" element={<Register></Register>}></Route>
                   <Route path="/login" element={<Login></Login>}></Route>
                   <Route path="/privacy" element={<GDPR></GDPR>} />
                   <Route path="/newentry" element={<NewEntry></NewEntry>} />
@@ -70,6 +68,7 @@ function App({ signOut, user }) {
                     path="/edit/:burialNum/:area/:eastWest/:sqew/:northSouth/:sqns"
                     element={<EditEntry></EditEntry>}
                   />
+                  <Route path="/admin" element={<AdminPortal></AdminPortal>} />
                 </Routes>
                 {/* {user.username}
             <button onClick={signOut}>Sign out</button> */}
@@ -88,7 +87,7 @@ function App({ signOut, user }) {
                 <Routes>
                   <Route path="/" element={<Home></Home>} />
                   <Route path="/burial" element={<Burial></Burial>} />
-                  <Route path="/admin" element={<Admin></Admin>} />
+                  <Route path="/admin" element={<AdminPortal></AdminPortal>} />
                   <Route
                     path="/supervised"
                     element={<Supervised></Supervised>}
@@ -97,7 +96,7 @@ function App({ signOut, user }) {
                     path="/unsupervised"
                     element={<Unsupervised></Unsupervised>}
                   />
-                  <Route path="/login" element={<Login></Login>}></Route>
+                  {/* <Route path="/login" element={<Login></Login>}></Route> */}
                   <Route path="/privacy" element={<GDPR></GDPR>} />
                 </Routes>
                 {/* {user.username}

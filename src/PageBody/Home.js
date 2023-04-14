@@ -9,6 +9,7 @@ import tombs from "./images/tombs.jpg";
 import map from "./images/map.jpg";
 import depthchart from "./images/depthchart.jpg";
 import textile from "./images/textile.jpg";
+import Footer from "../Footer";
 
 function Home() {
   return (
@@ -114,6 +115,7 @@ function Home() {
           </div> */}
         </div>
       </main>
+      
     </div>
   );
 }

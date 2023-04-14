@@ -82,7 +82,7 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
         role: roleName,
       };
       
-      await axios.post(mainUrl, body);
+      await axios.post(mainUrl, body).then(() => window.location.reload());
       setSuccess(true);
       setUser("");
       setPwd("");

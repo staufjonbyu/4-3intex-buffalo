@@ -110,7 +110,7 @@ function App({ signOut, user }) {
                   {/* {user.username}
 
             <button onClick={signOut}>Sign out</button> */}
-                  {cookieAccepted && <Footer></Footer>}
+                  {<Footer></Footer>}
                 </body>
               </BrowserRouter>
             </div>

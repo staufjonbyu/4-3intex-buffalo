@@ -31,6 +31,7 @@ const Login = () => {
 
   const [code, setCode] = useState("");
   const [response, setRes] = useState({});
+  const [msg, setMSG] = useState('');
 
   useEffect(() => {
     userRef.current.focus();
@@ -51,7 +52,7 @@ const Login = () => {
     // const response = await axios.post(mainUrl, body).then((res) => {
     //   setRes(response);
     // });
-    const response = await axios.post(mainUrl, body)
+    const response = await axios.post(mainUrl, body).catch(error => alert('Enter a valid login!'));
 
     console.log(response.data);
     localStorage.setItem("user", response.data.email);

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import awsconfig from "../aws-exports";
 import axios from "axios";
+import { useContext } from "react";
 
-function Admin() {
+
+function Admin({ switchToEditUserTab }) {
   // const { authStatus } = useAuthenticator((context) => [context.authStatus]);
 
   const [users, setUsers] = useState([]);
@@ -11,8 +13,16 @@ function Admin() {
   const [firstname, setFName] = useState("");
   const [lastname, setLName] = useState("");
   const [Role, setRole] = useState("");
+  
+  
 
   const userUrl = "https://de8jo1lugqs3e.cloudfront.net/api/User";
+
+   function handleEditClick() {
+    console.log("Edit button clicked");
+    switchToEditUserTab();
+  }
+
 
   function deleteUser(email) {
     axios
@@ -63,11 +73,9 @@ function Admin() {
               <td>
                 <div className="row">
                   <div className="col-6 justify-content-center align-items-center">
-                    <Link
-                      to={`/create?email=${user.email}&firstname=${user.firstname}&lastname=${user.lastname}&role=${user.role}`}
-                    >
-                      <button class="btn btn-primary">Edit</button>
-                    </Link>
+
+                      <button onClick={handleEditClick} class="btn btn-primary">Edit</button>
+
                   </div>
                   <div className="col-6 justify-content-center align-items-center">
                     <button

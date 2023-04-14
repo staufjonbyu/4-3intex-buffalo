@@ -122,30 +122,51 @@ const Login = () => {
           >
             {errMsg}
           </p>
-          <h1>Sign In</h1>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
-              required
-            />
-            <br></br>
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
-              required
-            />
-            <br></br>
-            <button>Sign In</button>
-          </form>
+          <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-lg-8 col-xl-6">
+                <div class="card rounded-3">
+                  <div class="card-body p-4 p-md-5">
+                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
+                      Login
+                    </h3>
+                    <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
+                      <div class="">
+                        <div class="form-outline">
+
+                    <form onSubmit={handleSubmit}>
+                      <label class="form-label" htmlFor="username">Username:</label>
+                      <input
+                        type="text"
+                        id="username"
+                        ref={userRef}
+                        autoComplete="off"
+                        onChange={(e) => setUser(e.target.value)}
+                        value={user}
+                        required
+                      />
+                      <br></br>
+                      <br></br>
+                      <label class="form-label" htmlFor="password">Password:</label>
+                      <input
+                        type="password"
+                        id="password"
+                        onChange={(e) => setPwd(e.target.value)}
+                        value={pwd}
+                        required
+                      />
+                      <br></br>
+                      <br></br>
+                      <button class="btn btn-primary mb-4">Sign In</button>
+                    </form>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
         </section>
       )}
     </>

@@ -40,7 +40,6 @@ function Admin() {
 
     fetchUsers();
   }, []);
-  
 
   return (
     <>
@@ -62,14 +61,23 @@ function Admin() {
               <td>{user.lastname}</td>
               <td>{user.role}</td>
               <td>
-                <Link
-                  to={`/create?email=${user.email}&firstname=${user.firstname}&lastname=${user.lastname}&role=${user.role}`}
-                >
-                  <button>Edit</button>
-                </Link>
-                <a> </a>
-
-                <button onClick={() => deleteUser(user.email)}>Delete</button>
+                <div className="row">
+                  <div className="col-6 justify-content-center align-items-center">
+                    <Link
+                      to={`/create?email=${user.email}&firstname=${user.firstname}&lastname=${user.lastname}&role=${user.role}`}
+                    >
+                      <button class="btn btn-primary">Edit</button>
+                    </Link>
+                  </div>
+                  <div className="col-6 justify-content-center align-items-center">
+                    <button
+                      onClick={() => deleteUser(user.email)}
+                      class="btn btn-primary"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
               </td>
             </tr>
           ))}

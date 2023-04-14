@@ -11,6 +11,7 @@ const Login = () => {
 
 
   const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api/Authenticate";
+  //const mainUrl = "https://localhost:7127/api/Authenticate";
 
 
 
@@ -50,7 +51,7 @@ const Login = () => {
     // const response = await axios.post(mainUrl, body).then((res) => {
     //   setRes(response);
     // });
-    const response = await axios.post(mainUrl, body);
+    const response = await axios.post(mainUrl, body)
 
     console.log(response.data);
     localStorage.setItem("user", response.data.email);

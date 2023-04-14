@@ -81,7 +81,7 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
         hash: pwd,
         role: roleName,
       };
-      console.log(body);
+      
       await axios.post(mainUrl, body);
       setSuccess(true);
       setUser("");
@@ -102,14 +102,7 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
 
   return (
     <>
-      {success ? (
-        <section>
-          <h1>Success!</h1>
-          <p>
-            <a href="/">Home</a>
-          </p>
-        </section>
-      ) : (
+     
         <section>
           <form onSubmit={handleSubmit}>
             {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
@@ -309,6 +302,7 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
                               Create User
                             </button>
                           </div>
+                          {success ? <h2>Added!</h2> : <></>}
                           <div className="col-3"></div>
                         </div>
                       </div>
@@ -319,7 +313,7 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
             </div>
           </form>
         </section>
-      )}
+      
     </>
   );
 };

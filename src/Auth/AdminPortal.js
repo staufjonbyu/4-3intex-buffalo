@@ -36,9 +36,9 @@ const switchToEditUserTab = () => {
                 <Nav.Item>
                   <Nav.Link eventKey="second">Create new user</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
+                {/* <Nav.Item>
                   <Nav.Link eventKey="third">Edit user</Nav.Link>
-                </Nav.Item>
+                </Nav.Item> */}
               </Nav>
             </Col>
             <Col md={9}>
@@ -50,9 +50,9 @@ const switchToEditUserTab = () => {
                 <Tab.Pane eventKey="second">
                   <Register></Register>
                 </Tab.Pane>
-                <Tab.Pane eventKey="third">
+                {/* <Tab.Pane eventKey="third">
                   <EditUser></EditUser>
-                </Tab.Pane>
+                </Tab.Pane> */}
               </Tab.Content>
             </Col>
           </Row>

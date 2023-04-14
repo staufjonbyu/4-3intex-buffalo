@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   faCheck,
   faTimes,
@@ -9,27 +10,35 @@ import axios from "axios";
 
 
 
-const EditUser = ({ email = "", firstname = "", lastname = "", role = "" }) => {
+const EditUser = () => {
 
+  const { firstname, lastname, email, role } = useParams();
   const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api/User";
+  //const mainUrl = "https://localhost:7127/api/User";
   const [success, setSuccess] = useState(null);
   const [firstName, setFirstName] = useState(firstname);
   const [lastName, setLastName] = useState(lastname);
   const [roleName, setRoleName] = useState(role);
   const [user, setUser] = useState(email);
 
+  console.log(firstName);
+  console.log(lastName);
 
+  function onSubmit()
+  {
+    const obj = {
+      email: email,
+      firstname: firstName,
+      lastname: lastName,
+      hash: "",
+      role: roleName
+    }
+
+    axios.put(`${mainUrl}/${email}`, obj).then(() => window.location.href = '/admin');
+  }
 
   return (
     <>
-      {success ? (
-        <section>
-          <h1>Success!</h1>
-          <p>
-            <a href="/">Home</a>
-          </p>
-        </section>
-      ) : (
         <section>
         {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
         <div class="container py-5">
@@ -69,11 +78,12 @@ const EditUser = ({ email = "", firstname = "", lastname = "", role = "" }) => {
                       <div class="form-outline">
                         <label class="form-label" htmlFor="user">Email:</label>
                         <input
+                          disabled
                           type="email"
                           id="user"
                           autoComplete="off"
-                          onChange={(e) => setUser(e.target.value)}
-                          value={user}
+                          
+                          value={email}
                           required
                           aria-describedby="uidnote"
                           class="form-control"
@@ -90,14 +100,14 @@ const EditUser = ({ email = "", firstname = "", lastname = "", role = "" }) => {
                           className="form-control"
                         >
                           <option value="">Select role</option>
-                          <option value="Admin">Admin</option>
-                          <option value="Researcher">Researcher</option>
+                          <option selected={roleName === 'Admin' ? true : false}value="Admin">Admin</option>
+                          <option selected={roleName === 'Researcher' ? true : false}value="Researcher">Researcher</option>
                         </select>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <button
-                        onClick={() => window.location.reload()}
+                        onClick={() => onSubmit()}
                         type="button"
                         class="btn btn-primary mt-4"
                       >
@@ -111,9 +121,7 @@ const EditUser = ({ email = "", firstname = "", lastname = "", role = "" }) => {
           </div>
         </div>
       </section>
-
-)
-        }
+      
     </>
   );
 }

@@ -27,7 +27,7 @@ function Table() {
                   <td>1</td>
                   <td>291</td>
                   <td>U (100%)</td>
-                  <td>W (100%)</td>
+                  <td>F (100%)</td>
                   <td>0.56-1.9</td>
                   <td>W (95%), E (5%)</td>
                   <td>U (100%)</td>

@@ -5,18 +5,17 @@ import "./App.css";
 import "./Custom.css";
 
 function Header() {
-  function SignOut(){
+  function SignOut() {
     localStorage.clear();
 
-    window.location.href = '/';
-
+    window.location.href = "/";
   }
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
   const isAuth = localStorage.getItem("role")
-  ? localStorage.getItem("role").toLocaleLowerCase() === "admin"
-    ? true
-    : false
-  : false;
+    ? localStorage.getItem("role").toLocaleLowerCase() === "admin"
+      ? true
+      : false
+    : false;
   return (
     <div className="bg-light">
       <br></br>
@@ -41,7 +40,7 @@ function Header() {
             </li>
             <li className="nav-item">
               <a href="/unsupervised" className="nav-link text-dark border">
-                Unsupervised
+                Clustering
               </a>
             </li>
             {isAuth ? (
@@ -52,23 +51,21 @@ function Header() {
                   </a>
                 </li>
                 <li className="nav-item">
-                    
-                      <button
-                        className="nav-link btn btn-link text-dark border"
-                        onClick={SignOut}
-                      >
-                          Sign Out
-                      </button>
-
+                  <button
+                    className="nav-link btn btn-link text-dark border"
+                    onClick={SignOut}
+                  >
+                    Sign Out
+                  </button>
                 </li>
               </>
-            ) : (                
-            <li className="nav-item">
-            <a href="/login" className="nav-link text-dark border">
-              Login
-            </a>
-          </li>)
-            }
+            ) : (
+              <li className="nav-item">
+                <a href="/login" className="nav-link text-dark border">
+                  Login
+                </a>
+              </li>
+            )}
             {/* // 
             //     <a href="/login" className="nav-link text-dark border">
             //       Login

@@ -18,3 +18,7 @@ body {
 footer {
   text-align: center;
 }
+
+.nav-item {
+  padding: 0 10px; /* add horizontal padding between the nav items */
+}

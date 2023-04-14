@@ -20,7 +20,7 @@ function Header() {
             </li>
             <li className="nav-item">
               <a href="/burial" className="nav-link text-dark border">
-                Burial
+                Burials
               </a>
             </li>
             <li className="nav-item">

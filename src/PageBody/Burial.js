@@ -3,66 +3,61 @@ import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "./BurialStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-function convertAge(age){
+function convertAge(age) {
   const ages = {
-    "A": "Adult",
-    "C": "Child",
-    "I": "Infant",
-    "IN": "Infant",
-    "N": "Newborn",
-    "U": "Unknown"
-};
+    A: "Adult",
+    C: "Child",
+    I: "Infant (I)",
+    IN: "Infant (IN)",
+    N: "Newborn",
+    U: "Unknown",
+  };
 
-  if (age in ages){
-    return(ages[age]);
+  if (age in ages) {
+    return ages[age];
   }
+
   return "";
 }
 
-function convertSex(sex)
-{
+function convertSex(sex) {
   const sexes = {
-    "M": "Male",
-    "F": "Female",
-    "U": "Unknown"
+    M: "Male",
+    F: "Female",
+    U: "Unknown",
   };
 
-  if (sex in sexes)
-  {
+  if (sex in sexes) {
     return sexes[sex];
   }
   return "";
 }
 
-function convertHair(hair)
-{
+function convertHair(hair) {
   const haircolors = {
-    "B": "Brown",
-    "K": "Black",
-    "A": "Brown-Red",
-    "R": "Red",
-    "D": "Blonde",
-    "U": "Unknown"
-};
+    B: "Brown",
+    K: "Black",
+    A: "Brown-Red",
+    R: "Red",
+    D: "Blonde",
+    U: "Unknown",
+  };
 
-  if (hair in haircolors)
-  {
+  if (hair in haircolors) {
     return haircolors[hair];
   }
   return "";
 }
 
-function convertWrapping(wrap)
-{
+function convertWrapping(wrap) {
   const wrappings = {
-    "W": "Full remains",
-    "H": "Partial remains",
-    "B": "Bones/Partial remains",
-    "S": "Unknown"
-};
+    W: "Full remains",
+    H: "Partial remains",
+    B: "Bones/Partial remains",
+    S: "Unknown",
+  };
 
-  if (wrap in wrappings)
-  {
+  if (wrap in wrappings) {
     return wrappings[wrap];
   }
   return "";
@@ -102,21 +97,48 @@ function Burial() {
   //
   return (
     <>
-        <div>
-          <button type="button" onClick={() => window.location.reload()}>Reset Filters</button>
-        </div>
+      <div>
+        <br></br>
+        <p>
+          This page allows you to find information on specific burials uncovered
+          at Fag el-Gamous and filter the results based on important criteria.
+          To view more detailed information about a specific burial, click on
+          the Burial Number for the desired record. <br></br>Admins: Edit the data by <a href="/login">
+                  logging in
+                </a>.
+        </p>
+        <button
+          className="pagination-button"
+          type="button"
+          onClick={() => window.location.reload()}
+        >
+          Reset Filters
+        </button>
+      </div>
       {authStatus !== "authenticated" ? (
         <center>
-
-        
           <div>
             <br />
             <div style={{ height: "500px", overflow: "auto" }}>
               <table className="table table-striped table-bordered">
                 <thead>
                   <tr>
-                    <th><input type="checkbox" onChange={() => setBNum(!bNum)}></input>Burial Number</th>
-                    <th>
+                    <th className="column-header">
+                      Burial Number<br></br>
+                      <button
+                        className="sort-button"
+                        type="button"
+                        onClick={() => {
+                          setBNum(!bNum);
+                          setDepth(false);
+                          setLength(false);
+                        }}
+                      >
+                        {bNum ? "Unsort" : "Sort"}
+                      </button>{" "}
+                    </th>
+                    <th className="column-header">
+                      Area <br></br>
                       <select
                         onChange={(i) => {
                           setArea(i.target.value);
@@ -134,7 +156,8 @@ function Burial() {
                         )}
                       </select>
                     </th>
-                    <th>
+                    <th className="column-header">
+                      Age<br></br>
                       <select
                         onChange={(i) => {
                           setAge(i.target.value);
@@ -152,8 +175,9 @@ function Burial() {
                         )}
                       </select>
                     </th>
-                    <th>
-                      <select 
+                    <th className="column-header">
+                      Sex <br></br>
+                      <select
                         onChange={(i) => {
                           setSex(i.target.value);
                         }}
@@ -170,7 +194,8 @@ function Burial() {
                         )}
                       </select>
                     </th>
-                    <th>
+                    <th className="column-header">
+                      Hair Color<br></br>
                       <select
                         onChange={(i) => {
                           setHairColor(i.target.value);
@@ -188,7 +213,9 @@ function Burial() {
                         )}
                       </select>
                     </th>
-                    <th>
+                    <th className="column-header">
+                      {" "}
+                      Wrapping<br></br>
                       <select
                         onChange={(i) => {
                           setWrapping(i.target.value);
@@ -199,7 +226,9 @@ function Burial() {
                         </option>
                         {filter.wrappings ? (
                           filter.wrappings.map((a) => {
-                            return <option value={a}>{convertWrapping(a)}</option>;
+                            return (
+                              <option value={a}>{convertWrapping(a)}</option>
+                            );
                           })
                         ) : (
                           <></>
@@ -242,29 +271,61 @@ function Burial() {
                         )}
                       </select>
                     </th> */}
-                    <th>
-                      <input type="checkbox" onChange={() => setDepth(!depth)}></input>Burial Depth 
+                    <th className="column-header">
+                      Burial Depth <br />
+                      <button
+                        className="sort-button"
+                        type="button"
+                        onClick={() => {
+                          setDepth(!depth);
+                          setLength(false);
+                          setBNum(false);
+                        }}
+                      >
+                        {depth ? "Unsort" : "Sort"}
+                      </button>
                     </th>
-                    <th>
-                    <input type="checkbox" onChange={() => setLength(!length)}></input>Burial Length 
+                    <th className="column-header">
+                      Body Length <br />
+                      <button
+                        className="sort-button"
+                        type="button"
+                        onClick={() => {
+                          setLength(!length);
+                          setDepth(false);
+                          setBNum(false);
+                        }}
+                      >
+                        {length ? "Unsort" : "Sort"}
+                      </button>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  { data !== [] ? data.map((x) => {
-                    return (
-                      <tr>
-                        <td><a href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}>{x.burialnumber}</a></td>
-                        <td>{x.area}</td>
-                        <td>{x.ageatdeath}</td>
-                        <td>{x.sex}</td>
-                        <td>{x.haircolor}</td>
-                        <td>{x.wrapping}</td>
-                        <td>{x.depth}</td>
-                        <td>{x.length}</td>
-                      </tr>
-                    );
-                  }) : <h3>Loading Data</h3>}
+                  {data !== [] ? (
+                    data.map((x) => {
+                      return (
+                        <tr>
+                          <td>
+                            <a
+                              href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
+                            >
+                              {x.burialnumber}
+                            </a>
+                          </td>
+                          <td>{x.area}</td>
+                          <td>{x.ageatdeath}</td>
+                          <td>{x.sex}</td>
+                          <td>{x.haircolor}</td>
+                          <td>{x.wrapping}</td>
+                          <td>{x.depth}</td>
+                          <td>{x.length}</td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <h3>Loading Data</h3>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -274,6 +335,7 @@ function Burial() {
               <div style={{ display: "flex", justifyContent: "center" }}>
                 {obj.previousPage !== "NaN" ? (
                   <button
+                    className="pagination-button"
                     onClick={() => {
                       setPage(page - 1);
                       setData([]);
@@ -284,9 +346,10 @@ function Burial() {
                 ) : (
                   <></>
                 )}
-                
+
                 {obj.nextPage !== "NaN" ? (
                   <button
+                    className="pagination-button"
                     onClick={() => {
                       setPage(page + 1);
                       setData([]);
@@ -297,16 +360,15 @@ function Burial() {
                 ) : (
                   <></>
                 )}
-                
               </div>
             ) : (
               <></>
             )}
             <br />
             {obj.totalPages > 0 ? (
-              <p>
+              <span>
                 Page {page} of {obj.totalPages}
-              </p>
+              </span>
             ) : (
               <></>
             )}
@@ -325,20 +387,30 @@ function Burial() {
                   </tr>
                 </thead>
                 <tbody>
-                { data !== [] ? data.map((x) => {
-                    return (
-                      <tr>
-                        <td><a href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}>{x.burialnumber}</a></td>
-                        <td>{x.area}</td>
-                        <td>{x.ageatdeath}</td>
-                        <td>{x.sex}</td>
-                        <td>{x.haircolor}</td>
-                        <td>{x.wrapping}</td>
-                        <td>{x.depth}</td>
-                        <td>{x.length}</td>
-                      </tr>
-                    );
-                  }) : <h3>Loading Data</h3>}
+                  {data !== [] ? (
+                    data.map((x) => {
+                      return (
+                        <tr>
+                          <td>
+                            <a
+                              href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
+                            >
+                              {x.burialnumber}
+                            </a>
+                          </td>
+                          <td>{x.area}</td>
+                          <td>{x.ageatdeath}</td>
+                          <td>{x.sex}</td>
+                          <td>{x.haircolor}</td>
+                          <td>{x.wrapping}</td>
+                          <td>{x.depth}</td>
+                          <td>{x.length}</td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <h3>Loading Data</h3>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -348,6 +420,7 @@ function Burial() {
               <div style={{ display: "flex", justifyContent: "center" }}>
                 {obj.previousPage !== "NaN" ? (
                   <button
+                    className="pagination-button"
                     onClick={() => {
                       setPage(page - 1);
                       setData([]);
@@ -358,9 +431,10 @@ function Burial() {
                 ) : (
                   <></>
                 )}
-                
+
                 {obj.nextPage !== "NaN" ? (
                   <button
+                    className="pagination-button"
                     onClick={() => {
                       setPage(page + 1);
                       setData([]);
@@ -371,16 +445,15 @@ function Burial() {
                 ) : (
                   <></>
                 )}
-                
               </div>
             ) : (
               <></>
             )}
             <br />
             {obj.totalPages > 0 ? (
-              <p>
+              <span>
                 Page {page} of {obj.totalPages}
-              </p>
+              </span>
             ) : (
               <></>
             )}

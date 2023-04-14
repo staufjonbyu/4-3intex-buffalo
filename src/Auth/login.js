@@ -3,16 +3,18 @@ import axios from 'axios';
 import AuthContext from "./AuthProvider";
 
 const Login = () => {
-  const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api/Authenticate";
+  const mainUrl = "https://localhost:7127/api/Authenticate";
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
+  const [showForm, setShowForm] = useState(true);
 
   const [user, setUser] = useState('');
   const [name, setName] = useState('');
   const [pwd, setPwd] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
+  const [verifed, setVerifed] = useState(false);
   const [code, setCode] = useState('');
   
   useEffect(() => {
@@ -44,6 +46,8 @@ const Login = () => {
         const role = response.data.role;
         setUser(response.data.email);
         setName(response.data.firstname)
+        setCode(response.data.code)
+
         // setEmail(response.data)
 
         setAuth({ user, role, accessToken, name });
@@ -52,22 +56,57 @@ const Login = () => {
     } catch (error) {
         
     }
-}
-
+  }
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowForm(false);
+    }, 60000);
+    return () => clearTimeout(timeout);
+  }, []);
+  function handleVerificationSubmit(event) {
+    event.preventDefault();
+    // handle verification code submission here
+    
+    // check if verification code is correct
+    const isCodeCorrect = true; // replace with your verification code validation logic
+  
+    if (isCodeCorrect) {
+      // verification code is correct, set success state to true
+      setVerifed(true);
+    } else {
+      // verification code is incorrect, set error message
+      setErrMsg("Verification code is incorrect.");
+  
+      // set a timeout to hide the form after 1 minute
+      const timeout = setTimeout(() => {
+        setShowForm(false);
+      }, 60000);
+      return () => clearTimeout(timeout);
+    }
+  }
+  
+  
   return (
     <>
       {success ? (
-        <section>
-          <h1>{name} you are now logged in!</h1>
-          <br />
-          <form > 
-            <label>Enter Verification Code in your email:</label>
-          </form>
-          <p>
-            <a href="#">Go to Home</a>
-          </p>
-        </section>
-      ) : (
+        <>
+            <h1>{name} you are now logged in!</h1>
+            <br />
+            {!verifed ?(
+                  <form onSubmit={handleVerificationSubmit}>
+                  <label>Enter Verification Code in your email:</label>
+                  <input type="text" name="verificationCode" />
+                  <button type="submit">Submit</button>
+                </form>
+            ):(
+              <h4></h4>
+            )
+            
+          
+          }
+
+      </>
+    )  : (
         <section>
           <p
             ref={errRef}

@@ -3,7 +3,7 @@ import axios from 'axios';
 import AuthContext from "./AuthProvider";
 
 const Login = () => {
-  const mainUrl = "https://localhost:7127/api/Authenticate";
+  const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api/Authenticate";
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();

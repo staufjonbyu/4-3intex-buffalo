@@ -12,7 +12,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{12,24}$/;
 const REGISTER_URL = "/register";
 
 const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
-  const mainUrl = "https://localhost:7127/api/User";
+  const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api/User";
   const userRef = useRef();
   const errRef = useRef();
   const lastNameRef = useRef();

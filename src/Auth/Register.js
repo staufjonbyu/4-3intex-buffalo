@@ -6,13 +6,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { AuthProvider } from "./AuthContext";
 
 const USER_REGEX = /^.{4,24}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{12,24}$/;
 const REGISTER_URL = "/register";
 
 const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
+
   const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api/User";
+
   const userRef = useRef();
   const errRef = useRef();
   const lastNameRef = useRef();
@@ -104,11 +107,12 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
         <section>
           <h1>Success!</h1>
           <p>
-            <a href="#">Sign In</a>
+            <a href="/">Home</a>
           </p>
         </section>
       ) : (
         <section>
+
           {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
           <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -196,6 +200,7 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
             </div>
           </div>
           <form onSubmit={handleSubmit}>
+
             {/* <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Enter the email <br />
@@ -252,6 +257,7 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
               <span aria-label="dollar sign">$</span>{" "}
               <span aria-label="percent">%</span>
             </p>
+
 
             <label htmlFor="confirm_pwd">
               Confirm Password:

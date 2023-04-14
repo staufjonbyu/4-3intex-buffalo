@@ -1,112 +1,119 @@
-import { useRef, useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import AuthContext from "./AuthProvider";
+import { useRef, useState, useEffect, useContext } from "react";
+import axios from "axios";
+import useAuth from "./useAuth";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+
+import { LocationSearch } from "@aws-amplify/ui-react";
 
 const Login = () => {
+
+  const mainUrl = "https://localhost:7127/api/Authenticate";
+
   const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api/Authenticate";
   const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const userRef = useRef();
   const errRef = useRef();
-  const [showForm, setShowForm] = useState(true);
 
-  const [user, setUser] = useState('');
-  const [name, setName] = useState('');
-  const [pwd, setPwd] = useState('');
-  const [errMsg, setErrMsg] = useState('');
+  const [user, setUser] = useState("");
+  // const (showFrom, setShowForm) = useState("");
+  const [name, setName] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
   const [verifed, setVerifed] = useState(false);
-  const [code, setCode] = useState('');
-  
-  useEffect(() => {
-    userRef.current.focus();
-  }, [])
+
+  const [code, setCode] = useState("");
+  const [response, setRes] = useState({});
 
   useEffect(() => {
-    setErrMsg('');
-  }, [user, pwd])
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, pwd]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-        const body = {
-            "email": user,
-            "password": pwd,
-        }
+    const body = {
+      email: user,
+      password: pwd,
+    };
 
-        const response = await axios.post(mainUrl, body);
-
-        if (response.data.message === 'Authenticated!'){
-          setSuccess(true);
-        }
-
-        // perform any necessary UI updates
-
-        const accessToken = 'buffalo';
-        const role = response.data.role;
-        setUser(response.data.email);
-        setName(response.data.firstname)
-        setCode(response.data.code)
-
-        // setEmail(response.data)
-
-        setAuth({ user, role, accessToken, name });
-        setUser('');
-        setSuccess(true);
-    } catch (error) {
-        
-    }
-  }
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShowForm(false);
-    }, 60000);
-    return () => clearTimeout(timeout);
-  }, []);
-  function handleVerificationSubmit(event) {
-    event.preventDefault();
-    // handle verification code submission here
+    // const response = await axios.post(mainUrl, body).then((res) => {
+    //   setRes(response);
+    // });
+    const response = await axios.post(mainUrl, body);
     
-    // check if verification code is correct
-    const isCodeCorrect = true; // replace with your verification code validation logic
-  
-    if (isCodeCorrect) {
-      // verification code is correct, set success state to true
-      setVerifed(true);
-    } else {
-      // verification code is incorrect, set error message
-      setErrMsg("Verification code is incorrect.");
-  
-      // set a timeout to hide the form after 1 minute
-      const timeout = setTimeout(() => {
-        setShowForm(false);
-      }, 60000);
-      return () => clearTimeout(timeout);
+    console.log(response.data);
+    localStorage.setItem("user", response.data.email);
+    localStorage.setItem("name", response.data.firstname);
+    localStorage.setItem("code", response.data.code);
+    localStorage.setItem("message", response.data.message);
+    localStorage.setItem("role", response.data.role)
+    
+    if (response.data.message === 'Authenticated!'){
+      setSuccess(true);
+      window.location.href = "/";
+      // window.location.reload();
+      
+
+      
     }
-  }
-  
-  
+  };
+
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     // setShowForm(false);
+  //   }, 60000);
+  //   return () => clearTimeout(timeout);
+  // }, []);
+
+  // function handleVerificationSubmit(event) {
+  //   event.preventDefault();
+  //   // handle verification code submission here
+
+  //   // check if verification code is correct
+  //   const isCodeCorrect = true; // replace with your verification code validation logic
+
+  //   if (isCodeCorrect) {
+  //     // verification code is correct, set success state to true
+  //     setVerifed(true);
+  //   } else {
+  //     // verification code is incorrect, set error message
+  //     setErrMsg("Verification code is incorrect.");
+
+  //     // set a timeout to hide the form after 1 minute
+  //     const timeout = setTimeout(() => {
+  //       // setShowForm(false);
+  //     }, 60000);
+  //     return () => clearTimeout(timeout);
+  //   }
+  // }
+  // console.log(auth);
+
   return (
     <>
       {success ? (
         <>
-            <h1>{name} you are now logged in!</h1>
-            <br />
-            {!verifed ?(
-                  <form onSubmit={handleVerificationSubmit}>
-                  <label>Enter Verification Code in your email:</label>
-                  <input type="text" name="verificationCode" />
-                  <button type="submit">Submit</button>
-                </form>
-            ):(
-              <h4></h4>
-            )
-            
-          
-          }
-
-      </>
-    )  : (
+          <h1>{name} you are now logged in!</h1>
+          <br />
+          {/* {!verifed ? (
+            <form onSubmit={handleVerificationSubmit}>
+              <label>Enter Verification Code in your email:</label>
+              <input type="text" name="verificationCode" />
+              <button type="submit">Submit</button>
+            </form>
+          ) : (
+            <h4></h4>
+          )} */}
+        </>
+      ) : (
         <section>
           <p
             ref={errRef}
@@ -127,7 +134,7 @@ const Login = () => {
               value={user}
               required
             />
-
+            <br></br>
             <label htmlFor="password">Password:</label>
             <input
               type="password"
@@ -136,12 +143,13 @@ const Login = () => {
               value={pwd}
               required
             />
+            <br></br>
             <button>Sign In</button>
           </form>
         </section>
       )}
     </>
   );
-}
+};
 
-  export default Login;
+export default Login;

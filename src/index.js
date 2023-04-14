@@ -5,12 +5,14 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Amplify } from "aws-amplify";
+import { Amplify, Auth } from "aws-amplify";
 import config from "./aws-exports";
 import { AmplifyProvider } from "@aws-amplify/ui-react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
+import { AuthProvider } from "./Auth/AuthContext";
 Amplify.configure(config);
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 // const theme = {
 //   name: 'byu-look-alike',
 //   tokens: {
@@ -24,7 +26,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AmplifyProvider>
     <Authenticator.Provider>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </Authenticator.Provider>
   </AmplifyProvider>
   // <React.StrictMode>

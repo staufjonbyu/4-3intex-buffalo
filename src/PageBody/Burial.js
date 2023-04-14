@@ -66,7 +66,12 @@ function convertWrapping(wrap) {
 //const mainUrl = "https://localhost:7127/api";
 const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api";
 function Burial() {
-  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const isAuth = localStorage.getItem("role")
+    ? localStorage.getItem("role").toLocaleLowerCase() === "admin"
+      ? true
+      : false
+    : false;
+
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [obj, setObj] = useState([]);
@@ -103,9 +108,8 @@ function Burial() {
           This page allows you to find information on specific burials uncovered
           at Fag el-Gamous and filter the results based on important criteria.
           To view more detailed information about a specific burial, click on
-          the Burial Number for the desired record. <br></br>Admins: Edit the data by <a href="/login">
-                  logging in
-                </a>.
+          the Burial Number for the desired record. <br></br>Admins: Edit the
+          data by <a href="/login">logging in</a>.
         </p>
         <button
           className="pagination-button"
@@ -115,7 +119,7 @@ function Burial() {
           Reset Filters
         </button>
       </div>
-      {authStatus !== "authenticated" ? (
+      {isAuth ? (
         <center>
           <div>
             <br />

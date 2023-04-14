@@ -40,7 +40,6 @@ function Admin() {
 
     fetchUsers();
   }, []);
-  
 
   return (
     <>

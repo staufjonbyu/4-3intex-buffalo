@@ -5,7 +5,18 @@ import "./App.css";
 import "./Custom.css";
 
 function Header() {
+  function SignOut(){
+    localStorage.clear();
+
+    window.location.reload();
+
+  }
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const isAuth = localStorage.getItem("role")
+  ? localStorage.getItem("role").toLocaleLowerCase() === "admin"
+    ? true
+    : false
+  : false;
   return (
     <div className="bg-light">
       <br></br>
@@ -33,39 +44,36 @@ function Header() {
                 Unsupervised
               </a>
             </li>
-            {authStatus === "authenticated" && (
+            {isAuth ? (
               <>
-                <li className="nav-item d-block d-lg-none">
+                <li className="nav-item">
                   <a href="/admin" className="nav-link text-dark border">
                     Admin
                   </a>
                 </li>
                 <li className="nav-item">
-                  <Authenticator>
-                    {({ signOut, user }) => (
+                    
                       <button
                         className="nav-link btn btn-link text-dark border"
-                        onClick={signOut}
+                        onClick={SignOut}
                       >
-                        {user.username} Sign Out
+                          Sign Out
                       </button>
-                    )}
-                  </Authenticator>
+
                 </li>
               </>
-            )}
-            {authStatus !== "authenticated" && (
-              <li className="nav-item">
-                <a href="/login" className="nav-link text-dark border">
-                  Login
-                </a>
-              </li>
-            )}
-            <li className="nav-item d-none d-lg-block">
-              <a href="/admin" className="nav-link text-dark border">
-                Admin
-              </a>
-            </li>
+            ) : (                
+            <li className="nav-item">
+            <a href="/login" className="nav-link text-dark border">
+              login
+            </a>
+          </li>)
+            }
+            {/* // 
+            //     <a href="/login" className="nav-link text-dark border">
+            //       Login
+            //     </a>
+            //   </li> */}
           </ul>
         </nav>
       </div>

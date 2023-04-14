@@ -98,6 +98,7 @@ function Burial() {
   }, [page, ages, sex, wrappings, hairColors, areas, depth, length, bNum]);
   //
 
+  console.log(obj);
   function axiosDelete(x)
   {
     const url = `${mainUrl}/Crud/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`;
@@ -285,7 +286,7 @@ function Burial() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data !== [] ? (
+                  {data ? (
                     data.map((x) => {
                       return (
                         <tr>
@@ -337,7 +338,7 @@ function Burial() {
           <div>
             {data ? (
               <div style={{ display: "flex", justifyContent: "center" }}>
-                {page > obj.totalPages ? (
+                {page > 1 ? (
                   <button
                     className="pagination-button"
                     onClick={() => {
@@ -530,7 +531,7 @@ function Burial() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data !== [] ? (
+                  {data ? (
                     data.map((x) => {
                       return (
                         <tr>
@@ -562,7 +563,7 @@ function Burial() {
           <div>
             {data ? (
               <div style={{ display: "flex", justifyContent: "center" }}>
-                {page > obj.totalPages ? (
+                {page > 1 ? (
                   <button
                     className="pagination-button"
                     onClick={() => {

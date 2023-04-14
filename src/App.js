@@ -18,6 +18,7 @@ import React, { useEffect, useState, useContext } from "react";
 // import auth from './Auth/AuthProvider';
 import { AuthProvider} from "./Auth/AuthContext";
 import { AuthContext } from "./Auth/AuthContext";
+import EditUser from "./Auth/EditUser";
 
 // import Login from "./Auth/login";
 
@@ -93,6 +94,10 @@ function App({ signOut, user }) {
                     <Route
                       path="/create"
                       element={<Register></Register>}
+                    ></Route>
+                    <Route
+                      path="/edituser/:firstname/:lastname/:email/:role"
+                      element={<EditUser/>}
                     ></Route>
                     <Route path="/login" element={<Login></Login>}></Route>
 

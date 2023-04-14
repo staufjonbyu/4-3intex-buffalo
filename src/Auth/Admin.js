@@ -18,11 +18,6 @@ function Admin({ switchToEditUserTab }) {
 
   const userUrl = "https://de8jo1lugqs3e.cloudfront.net/api/User";
 
-   function handleEditClick() {
-    console.log("Edit button clicked");
-    switchToEditUserTab();
-  }
-
   function myConfirm(message) {
     const confirmBox = document.createElement('div');
     confirmBox.innerHTML = `
@@ -79,6 +74,11 @@ function Admin({ switchToEditUserTab }) {
   
   }
 
+  function editUser()
+  {
+
+  }
+
   useEffect(() => {
     async function fetchUsers() {
       try {
@@ -116,7 +116,7 @@ function Admin({ switchToEditUserTab }) {
                 <div className="row">
                   <div className="col-6 justify-content-center align-items-center">
 
-                      <button onClick={handleEditClick} class="btn btn-primary">Edit</button>
+                      <button class="btn btn-primary" onClick={() => {window.location.href = `/edituser/${user.firstname}/${user.lastname}/${user.email}/${user.role}`}}>Edit</button>
 
                   </div>
                   <div className="col-6 justify-content-center align-items-center">

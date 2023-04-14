@@ -8,7 +8,7 @@ function Header() {
   function SignOut(){
     localStorage.clear();
 
-    window.location.reload();
+    window.location.href = '/';
 
   }
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);

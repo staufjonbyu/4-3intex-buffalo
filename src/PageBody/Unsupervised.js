@@ -4,7 +4,7 @@ import { Tab, Nav, Row, Col } from "react-bootstrap";
 import Table from "./Supervised/UTable";
 import ScatterPlot from "./Supervised/ScatterPlot";
 import Graph from "./Unsupervised/Graph";
-import ReactImageMagnify from "react-image-magnify";
+import graph from "./images/graph.png";
 
 function Unsupervised() {
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);

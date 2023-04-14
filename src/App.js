@@ -8,9 +8,11 @@ import Login from "./Auth/login";
 import Register from "./Auth/Register";
 import Header from "./Header";
 import Footer from "./Footer";
+import NewEntry from "./PageBody/Admin/NewEntry";
 import CookieBanner from "./Auth/CookieConsent.js";
 import RequireAuth from './Auth/RequireAuth';
 import GDPR from "./PageBody/Gpdr";
+import EditEntry from "./PageBody/Admin/EditEntry";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useEffect, useState, useContext } from "react";
 // import auth from './Auth/AuthProvider';
@@ -56,6 +58,7 @@ function App({ signOut, user }) {
 
   return (
     <>
+
       <div>
           <div className="App">
             <CookieBanner></CookieBanner>
@@ -92,6 +95,7 @@ function App({ signOut, user }) {
                     />
                   </Routes>
                   {/* {user.username}
+
             <button onClick={signOut}>Sign out</button> */}
                   {cookieAccepted && <Footer></Footer>}
                 </body>

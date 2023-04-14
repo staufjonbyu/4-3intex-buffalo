@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
-function HeadDirection() {
-  const url = "https://de8jo1lugqs3e.cloudfront.net/headdirection";
+function Wrapping() {
+  const url = "https://de8jo1lugqs3e.cloudfront.net/wrapping";
 
   const [depth, setDepth] = useState(0);
-  const [samples, setSamples] = useState(true);
+  const [femur, setFemur] = useState(0);
+  const [hair, setHair] = useState(0);
   const [area, setArea] = useState(0);
+  const [adult, setAdult] = useState(false);
   const [display, setDisplay] = useState(false);
   const [data, setData] = useState("");
 
   function axiosRequest() {
     const wrappingBody = {
       depth: parseInt(depth),
-      samplescollected_unknown: samples ? 1 : 0,
-      area_sw: area === "SW" ? 1 : 0,
+      femurLength: parseInt(femur),
+      adultsubadult_: adult ? 1 : 0,
+      hairColor_brown: parseInt(hair),
+      area_ne: area === "NE" ? 1 : 0,
+      area_se: area === "SE" ? 1 : 0,
     };
 
     axios
@@ -24,6 +28,7 @@ function HeadDirection() {
       .then((res) => setData(res.data.predictedValue));
 
     setDisplay(!display);
+
     // //axios.post(`${url}addticket`, obj).then(() => console.log('Ticket added'));
   }
 
@@ -34,8 +39,10 @@ function HeadDirection() {
   //   }, []);
 
   console.log(depth);
-  console.log(samples);
+  console.log(femur);
+  console.log(hair);
   console.log(area);
+  console.log(adult);
 
   return (
     <>
@@ -45,7 +52,7 @@ function HeadDirection() {
             <div class="card rounded-3">
               <div class="card-body p-4 p-md-5">
                 <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
-                  Enter Head Direction Prediction Info
+                  Enter Wrapping Prediction Info
                 </h3>
                 <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
                   <div class="col-6">
@@ -66,6 +73,42 @@ function HeadDirection() {
                   </div>
 
                   <div class="col-6">
+                    <div class="form-outline">
+                      <label class="form-label" for="depth">
+                        Femur Length:
+                      </label>
+                      <input
+                        type="type"
+                        id="depth"
+                        class="form-control"
+                        placeholder="0-50"
+                        onKeyUp={(e) => {
+                          setFemur(e.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row pb-2 pb-md-0 mb-5">
+                  <div class="col-6">
+                    <div class="">
+                      <label class="form-label" for="form5Example2">
+                        Hair Color
+                      </label>
+                      <select
+                        onChange={(e) => setHair(e.target.value)}
+                        class="form-select"
+                      >
+                        <option value="0">Brown</option>
+                        <option value="0">Black</option>
+                        <option value="1">Red</option>
+                        <option value="0">Brown-Red</option>
+                        <option value="0">Blonde</option>
+                        <option value="0">Unknown</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6">
                     <div class="mb-1">
                       <label class="form-label" for="form5Example2">
                         Area
@@ -82,17 +125,16 @@ function HeadDirection() {
                     </div>
                   </div>
                 </div>
-
                 <div class="mb-4 justify-content-center">
                   <input
                     class="form-check-input me-2"
                     type="checkbox"
                     value=""
                     id="form5Example3"
-                    onClick={() => setSamples(!samples)}
+                    onClick={() => setAdult(!adult)}
                   />
                   <label class="form-check-label" for="form5Example3">
-                    Were samples collected?
+                    Is this an Adult?
                   </label>
                 </div>
                 <button
@@ -108,14 +150,12 @@ function HeadDirection() {
                 >
                   <h3 class="mb-4 mt-4">
                     Prediction:{" "}
-                    {data === "e"
-                      ? "East"
-                      : data === "w"
-                      ? "West"
-                      : data === "s"
-                      ? "South"
-                      : data === "n"
-                      ? "North"
+                    {data === "w"
+                      ? "Whole"
+                      : data === "h"
+                      ? "Partial"
+                      : data === "b"
+                      ? "Bones"
                       : "Unknown"}
                   </h3>
                   <button
@@ -135,4 +175,4 @@ function HeadDirection() {
   );
 }
 
-export default HeadDirection;
+export default Wrapping;

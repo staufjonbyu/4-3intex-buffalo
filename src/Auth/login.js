@@ -6,10 +6,15 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { LocationSearch } from "@aws-amplify/ui-react";
 
 const Login = () => {
+
   const mainUrl = "https://localhost:7127/api/Authenticate";
+
+  const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api/Authenticate";
+  const { setAuth } = useContext(AuthContext);
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
   const userRef = useRef();
   const errRef = useRef();
 

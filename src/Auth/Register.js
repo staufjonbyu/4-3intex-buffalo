@@ -13,7 +13,9 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{12,24}$/;
 const REGISTER_URL = "/register";
 
 const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
-  const mainUrl = "https://localhost:7127/api/User";
+
+  const mainUrl = "https://de8jo1lugqs3e.cloudfront.net/api/User";
+
   const userRef = useRef();
   const errRef = useRef();
   const lastNameRef = useRef();
@@ -105,72 +107,105 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
         <section>
           <h1>Success!</h1>
           <p>
-            <a href="#">Sign In</a>
+            <a href="/">Home</a>
           </p>
         </section>
       ) : (
         <section>
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-          <h1>Create New User</h1>
+
+          {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
+          <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-lg-8 col-xl-6">
+                <div class="card rounded-3">
+                  <div class="card-body p-4 p-md-5">
+                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
+                      Create New User
+                    </h3>
+                    <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
+                      <div class="col-6">
+                        <div class="form-outline">
+                          <label class="form-label" htmlFor="firstname">
+                            First Name:
+                            {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
+                                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
+                          </label>
+                          <input
+                            type="text"
+                            id="firstName"
+                            ref={firstNameRef}
+                            autoComplete="off"
+                            onChange={(e) => setFirstName(e.target.value)}
+                            value={firstName}
+                            className="form-control"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-outline">
+                          <label class="form-label" htmlFor="lastname">
+                            Last Name:
+                            {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
+                                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
+                          </label>
+                          <input
+                            type="lastname"
+                            id="lastname"
+                            ref={lastNameRef}
+                            autoComplete="off"
+                            onChange={(e) => setLastName(e.target.value)}
+                            value={lastName}
+                            className="form-control"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
+                      <div class="col-6">
+                        <div class="form-outline">
+                          <label class="form-label" htmlFor="email">
+                            Email:
+                            {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
+                                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
+                          </label>
+                          <input
+                            type="email"
+                            id="user"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setUser(e.target.value)}
+                            value={user} // set this to the value of the user's email address
+                            required
+                            aria-invalid={validName ? "false" : "true"}
+                            aria-describedby="uidnote"
+                            class="form-control"
+                            onFocus={() => setUserFocus(true)}
+                            onBlur={() => setUserFocus(false)}
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
+                        <div class="col-6">
+                          <div class="form-outline">
+                            <label class="form-label" htmlFor="role">
+                              Role:
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="email">
-              Email:
-              {/* <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> */}
-            </label>
-            <input
-              type="text"
-              id="user"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setUser(e.target.value)}
-              value={user} // set this to the value of the user's email address
-              required
-              aria-invalid={validName ? "false" : "true"}
-              aria-describedby="uidnote"
-              onFocus={() => setUserFocus(true)}
-              onBlur={() => setUserFocus(false)}
-            />
-            <p></p>
+
             {/* <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Enter the email <br />
                         </p> */}
-            <label htmlFor="firstname">
-              First Name:
-              {/* <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} /> */}
-            </label>
 
-            <input
-              type="text"
-              id="firstName"
-              ref={firstNameRef}
-              autoComplete="off"
-              onChange={(e) => setFirstName(e.target.value)}
-              value={firstName}
-            />
-            <p></p>
-            <label htmlFor="lastname">
-              Last Name:
-              {/* <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} /> */}
-            </label>
-            <input
-              type="lastname"
-              id="lastname"
-              ref={lastNameRef}
-              autoComplete="off"
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-            />
-            <p></p>
             <label htmlFor="firstname">
               Role:
               {/* <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
@@ -222,6 +257,7 @@ const Register = ({ email = "", firstname = "", lastname = "", role = "" }) => {
               <span aria-label="dollar sign">$</span>{" "}
               <span aria-label="percent">%</span>
             </p>
+
 
             <label htmlFor="confirm_pwd">
               Confirm Password:

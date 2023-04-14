@@ -1,8 +1,10 @@
 import React from "react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import { Tab, Nav, Row, Col } from "react-bootstrap";
-import Table from "./UTable";
-import ScatterPlot from "./ScatterPlot";
+import Table from "./Supervised/UTable";
+import ScatterPlot from "./Supervised/ScatterPlot";
+import Graph from "./Unsupervised/Graph";
+import graph from "./images/graph.png";
 
 function Unsupervised() {
   const { authStatus } = useAuthenticator((context) => [context.authStatus]);
@@ -20,7 +22,7 @@ function Unsupervised() {
                   <ScatterPlot></ScatterPlot>
                 </Tab.Pane>
                 <Tab.Pane eventKey="third">
-                  <p>...</p>
+                  <Graph></Graph>
                 </Tab.Pane>
                 <Tab.Pane eventKey="fourth">
                   <p>...</p>

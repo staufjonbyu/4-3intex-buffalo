@@ -298,7 +298,7 @@ function Burial() {
                             <a
                               style={{ textDecoration: "none" }}
                               href={`/burial/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
-                              className="btn btn-dark"
+                              
                             >
                               {x.burialnumber}
                             </a>
@@ -313,16 +313,8 @@ function Burial() {
                           <td>
                             <a
                               style={{ textDecoration: "none" }}
-                              href={`/edit/${
-                                x.burialnumber ? x.burialnumber : ""
-                              }/${x.area ? x.area : ""}/${
-                                x.eastwest ? x.eastwest : ""
-                              }/${x.squareeastwest ? x.squareeastwest : ""}/${
-                                x.northsouth ? x.northsouth : ""
-                              }/${
-                                x.squarenorthsouth ? x.squarenorthsouth : ""
-                              }`}
-                              className="btn btn-dark"
+                              href={`/edit/${x.burialnumber}/${x.area}/${x.eastwest}/${x.squareeastwest}/${x.northsouth}/${x.squarenorthsouth}`}
+                              
                             >
                               Edit
                             </a>

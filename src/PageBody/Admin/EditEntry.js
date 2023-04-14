@@ -8,17 +8,6 @@ function EditEntry() {
   const url = "https://de8jo1lugqs3e.cloudfront.net/api/Crud/";
 
   const [data, setData] = useState("");
-
-  let { burialNum, area, eastWest, sqew, northSouth, sqns } = useParams();
-
-  useEffect(() => {
-    axios
-      .get(
-        `${url}${burialNum}/${area}/${eastWest}/${sqew}/${northSouth}/${sqns}`
-      )
-      .then((res) => setData(res.data));
-  }, []);
-
   const id = data.id;
   const [squarenorthsouth, setSquarenorthsouth] = useState();
   const [headdirection, setHeaddirection] = useState();
@@ -55,11 +44,53 @@ function EditEntry() {
   const [clusternumber, setClusternumber] = useState();
   const [shaftnumber, setShaftnumber] = useState();
 
-  const [display, setDisplay] = useState(false);
+  let { burialNum, area, eastWest, sqew, northSouth, sqns } = useParams();
 
-  const handleInputChange = (e) => {
-    setSquarenorthsouth(e.target.value);
-  };
+  useEffect(() => {
+    axios
+      .get(
+        `${url}${burialNum}/${area}/${eastWest}/${sqew}/${northSouth}/${sqns}`
+      )
+      .then((res) => {
+        setData(res.data);
+        setSquarenorthsouth(res.data.squarenorthsouth);
+        setHeaddirection(res.data.headdirection);
+        setSex(res.data.sex);
+        setNorthsouth(res.data.northsouth);
+        setDepth(res.data.depth);
+        setEastwest(res.data.eastwest);
+        setAdultsubadult(res.data.adultsubadult);
+        setFacebundles(res.data.facebundles);
+        setSouthtohead(res.data.southtohead);
+        setPreservation(res.data.preservation);
+        setFieldbookpage(res.data.fieldbookpage);
+        setSquareeastwest(res.data.squareeastwest);
+        setGoods(res.data.goods);
+        setText(res.data.text);
+        setWrapping(res.data.wrapping);
+        setHaircolor(res.data.haircolor);
+        setWesttohead(res.data.westtohead);
+        setSamplescollected(res.data.samplescollected);
+        setArea(res.data.area);
+        setBurialid(res.data.burialid);
+        setLength(res.data.length);
+        setBurialnumber(res.data.burialnumber);
+        setDataexpertinitials(res.data.dataexpertinitials);
+        setWesttofeet(res.data.westtofeet);
+        setAgeatdeath(res.data.ageatdeath);
+        setSouthtofeet(res.data.southtofeet);
+        setExcavationrecorder(res.data.excavationrecorder);
+        setPhotos(res.data.photos);
+        setHair(res.data.hair);
+        setBurialmaterials(res.data.burialmaterials);
+        setDateofexcavation(res.data.dateofexcavation);
+        setFieldbookexcavationyear(res.data.fieldbookexcavationyear);
+        setClusternumber(res.data.clusternumber);
+        setShaftnumber(res.data.shaftnumber);
+      });
+  }, []);
+
+  const [display, setDisplay] = useState(false);
 
   function axiosRequest() {
     const wrappingBody = {
@@ -83,7 +114,7 @@ function EditEntry() {
       westtohead: westtohead,
       samplescollected: samplescollected,
       area: Area,
-      burialid: burialid,
+      burialid: parseInt(burialid),
       length: length,
       burialnumber: burialnumber,
       dataexpertinitials: dataexpertinitials,
@@ -122,7 +153,7 @@ function EditEntry() {
             <div class="card rounded-3">
               <div class="card-body p-4 p-md-5">
                 <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
-                  New Burial Main Entry
+                  Edit Burial Main Entry
                 </h3>
                 <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
                   <div class="col-4">
@@ -135,10 +166,9 @@ function EditEntry() {
                         id="depth"
                         class="form-control"
                         value={squarenorthsouth}
-                        onKeyUp={(e) => {
+                        onChange={(e) => {
                           setSquarenorthsouth(e.target.value);
                         }}
-                        onChange={handleInputChange}
                       />
                     </div>
                   </div>
@@ -152,8 +182,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.headdirection}
-                        onKeyUp={(e) => {
+                        value={headdirection}
+                        onChange={(e) => {
                           setHeaddirection(e.target.value);
                         }}
                       />
@@ -168,8 +198,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.sex}
-                        onKeyUp={(e) => {
+                        value={sex}
+                        onChange={(e) => {
                           setSex(e.target.value);
                         }}
                       />
@@ -187,8 +217,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.northsouth}
-                        onKeyUp={(e) => {
+                        value={northsouth}
+                        onChange={(e) => {
                           setNorthsouth(e.target.value);
                         }}
                       />
@@ -204,8 +234,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.depth}
-                        onKeyUp={(e) => {
+                        value={depth}
+                        onChange={(e) => {
                           setDepth(e.target.value);
                         }}
                       />
@@ -220,8 +250,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.eastwest}
-                        onKeyUp={(e) => {
+                        value={eastwest}
+                        onChange={(e) => {
                           setEastwest(e.target.value);
                         }}
                       />
@@ -239,8 +269,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.adultsubadult}
-                        onKeyUp={(e) => {
+                        value={adultsubadult}
+                        onChange={(e) => {
                           setAdultsubadult(e.target.value);
                         }}
                       />
@@ -256,8 +286,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.facebundles}
-                        onKeyUp={(e) => {
+                        value={facebundles}
+                        onChange={(e) => {
                           setFacebundles(e.target.value);
                         }}
                       />
@@ -266,14 +296,14 @@ function EditEntry() {
                   <div class="col-4">
                     <div class="form-outline">
                       <label class="form-label" for="depth">
-                        South to Hsouthtoheadead:
+                        South to Head:
                       </label>
                       <input
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.southtohead}
-                        onKeyUp={(e) => {
+                        value={southtohead}
+                        onChange={(e) => {
                           setSouthtohead(e.target.value);
                         }}
                       />
@@ -291,8 +321,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.preservation}
-                        onKeyUp={(e) => {
+                        value={preservation}
+                        onChange={(e) => {
                           setPreservation(e.target.value);
                         }}
                       />
@@ -308,8 +338,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.fieldbookpage}
-                        onKeyUp={(e) => {
+                        value={fieldbookpage}
+                        onChange={(e) => {
                           setFieldbookpage(e.target.value);
                         }}
                       />
@@ -324,8 +354,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.squareeastwest}
-                        onKeyUp={(e) => {
+                        value={squareeastwest}
+                        onChange={(e) => {
                           setSquareeastwest(e.target.value);
                         }}
                       />
@@ -343,8 +373,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.goods}
-                        onKeyUp={(e) => {
+                        value={goods}
+                        onChange={(e) => {
                           setGoods(e.target.value);
                         }}
                       />
@@ -360,8 +390,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.text}
-                        onKeyUp={(e) => {
+                        value={text}
+                        onChange={(e) => {
                           setText(e.target.value);
                         }}
                       />
@@ -376,8 +406,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.wrapping}
-                        onKeyUp={(e) => {
+                        value={wrapping}
+                        onChange={(e) => {
                           setWrapping(e.target.value);
                         }}
                       />
@@ -395,8 +425,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.haircolor}
-                        onKeyUp={(e) => {
+                        value={haircolor}
+                        onChange={(e) => {
                           setHaircolor(e.target.value);
                         }}
                       />
@@ -412,8 +442,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.westtohead}
-                        onKeyUp={(e) => {
+                        value={westtohead}
+                        onChange={(e) => {
                           setWesttohead(e.target.value);
                         }}
                       />
@@ -428,8 +458,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.samplescollected}
-                        onKeyUp={(e) => {
+                        value={samplescollected}
+                        onChange={(e) => {
                           setSamplescollected(e.target.value);
                         }}
                       />
@@ -447,8 +477,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.Area}
-                        onKeyUp={(e) => {
+                        value={Area}
+                        onChange={(e) => {
                           setArea(e.target.value);
                         }}
                       />
@@ -464,8 +494,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.burialid}
-                        onKeyUp={(e) => {
+                        value={burialid}
+                        onChange={(e) => {
                           setBurialid(e.target.value);
                         }}
                       />
@@ -480,8 +510,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.length}
-                        onKeyUp={(e) => {
+                        value={length}
+                        onChange={(e) => {
                           setLength(e.target.value);
                         }}
                       />
@@ -499,8 +529,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.burialnumber}
-                        onKeyUp={(e) => {
+                        value={burialnumber}
+                        onChange={(e) => {
                           setBurialnumber(e.target.value);
                         }}
                       />
@@ -516,8 +546,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.dataexpertinitials}
-                        onKeyUp={(e) => {
+                        value={dataexpertinitials}
+                        onChange={(e) => {
                           setDataexpertinitials(e.target.value);
                         }}
                       />
@@ -532,8 +562,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.westtofeet}
-                        onKeyUp={(e) => {
+                        value={westtofeet}
+                        onChange={(e) => {
                           setWesttofeet(e.target.value);
                         }}
                       />
@@ -551,8 +581,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.ageatdeath}
-                        onKeyUp={(e) => {
+                        value={ageatdeath}
+                        onChange={(e) => {
                           setAgeatdeath(e.target.value);
                         }}
                       />
@@ -568,8 +598,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.southtofeet}
-                        onKeyUp={(e) => {
+                        value={southtofeet}
+                        onChange={(e) => {
                           setSouthtofeet(e.target.value);
                         }}
                       />
@@ -584,8 +614,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.excavationrecorder}
-                        onKeyUp={(e) => {
+                        value={excavationrecorder}
+                        onChange={(e) => {
                           setExcavationrecorder(e.target.value);
                         }}
                       />
@@ -603,8 +633,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.photos}
-                        onKeyUp={(e) => {
+                        value={photos}
+                        onChange={(e) => {
                           setPhotos(e.target.value);
                         }}
                       />
@@ -620,8 +650,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.hair}
-                        onKeyUp={(e) => {
+                        value={hair}
+                        onChange={(e) => {
                           setHair(e.target.value);
                         }}
                       />
@@ -636,8 +666,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.burialmaterials}
-                        onKeyUp={(e) => {
+                        value={burialmaterials}
+                        onChange={(e) => {
                           setBurialmaterials(e.target.value);
                         }}
                       />
@@ -655,8 +685,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.dateofexcavation}
-                        onKeyUp={(e) => {
+                        value={dateofexcavation}
+                        onChange={(e) => {
                           setDateofexcavation(e.target.value);
                         }}
                       />
@@ -672,8 +702,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.clusternumber}
-                        onKeyUp={(e) => {
+                        value={clusternumber}
+                        onChange={(e) => {
                           setClusternumber(e.target.value);
                         }}
                       />
@@ -688,8 +718,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.fieldbookexcavationyear}
-                        onKeyUp={(e) => {
+                        value={fieldbookexcavationyear}
+                        onChange={(e) => {
                           setFieldbookexcavationyear(e.target.value);
                         }}
                       />
@@ -709,8 +739,8 @@ function EditEntry() {
                         type="text"
                         id="depth"
                         class="form-control"
-                        value={data.shaftnumber}
-                        onKeyUp={(e) => {
+                        value={shaftnumber}
+                        onChange={(e) => {
                           setShaftnumber(e.target.value);
                         }}
                       />

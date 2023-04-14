@@ -244,7 +244,7 @@ function NewEntry() {
                   <div class="col-4">
                     <div class="form-outline">
                       <label class="form-label" for="depth">
-                        South to Hsouthtoheadead:
+                        South to House:
                       </label>
                       <input
                         type="text"
